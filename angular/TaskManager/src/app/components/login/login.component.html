@@ -1,0 +1,49 @@
+<!--login.component.html-->
+<section class="ftco-section mt-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center mb-5">
+                <h2 class="heading-section">Task Manager</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4">
+
+                <!--Mensagem de alerta do login-->
+                <div *ngIf="isAlertLogin" class="alert alert-danger text-center" role="alert">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="text-center">Email or password invalid!</span>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" (click)="isShowOrHideAlert()"
+                            aria-label="Close"></button>
+                    </div>
+                </div>
+
+                <div class="login-wrap p-0">
+                    <h4 class="mb-4 text-center">Do you already have a account?</h4>
+                    <form class="signin-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                        <div class="form-group">
+                            <input type="text" class="form-control" formControlName="email" placeholder=" Email"
+                                required>
+                        </div>
+                        <div class="form-group mt-4">
+                            <input type="password" class="form-control" formControlName="password"
+                                placeholder=" Password" required>
+                            <span toggle="#password-field" class="fa fa-fw field-icon toggle-password"></span>
+                        </div>
+                        <div class="form-group mt-2">
+                            <button type="submit" [disabled]="!loginForm.valid"
+                                class="form-control btn btn-outline-light">
+                                Sing In
+                            </button>
+                        </div>
+                        <div class="form-group d-md-flex d-md-flex justify-content-end">
+                            <div class="w-50 text-md-right mt-4 ">
+                                <a href="/register" style="color: #fff;">Create an account?</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
