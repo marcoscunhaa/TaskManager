@@ -1,0 +1,175 @@
+{
+	"info": {
+		"_postman_id": "7a5604c2-192b-498f-9279-d6e6f7f13798",
+		"name": "TaskManager",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "32520482"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fullName\": \"Marcos Cunha\",\r\n    \"email\": \"marcos.cunha1025@gmail.com\",\r\n    \"password\": \"soulindo\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/auth/signup"
+					},
+					"response": []
+				},
+				{
+					"name": "Validating User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDgzNTMxNDQsImV4cCI6MTcwODQzOTU0NCwiZW1haWwiOiJtYXJjb3MuY3VuaGExMDI1QGdtYWlsLmNvbSJ9.1E7jTS1cLgWbeSaWjSWgMruV0eCvndzSne90yPaJO7jYf6-Y1gOAvCyvfYlainb9XBnvj6zyBWc91vALU8Ft3Q"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"marcos.cunha1025@gmail.com\",\r\n    \"password\": \"soulindo\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/auth/signin"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Mostrar Perfil de Usuário",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDgzNTMxNDQsImV4cCI6MTcwODQzOTU0NCwiZW1haWwiOiJtYXJjb3MuY3VuaGExMDI1QGdtYWlsLmNvbSJ9.1E7jTS1cLgWbeSaWjSWgMruV0eCvndzSne90yPaJO7jYf6-Y1gOAvCyvfYlainb9XBnvj6zyBWc91vALU8Ft3Q"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/users/profile"
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar Usuários",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDgzNTMxNDQsImV4cCI6MTcwODQzOTU0NCwiZW1haWwiOiJtYXJjb3MuY3VuaGExMDI1QGdtYWlsLmNvbSJ9.1E7jTS1cLgWbeSaWjSWgMruV0eCvndzSne90yPaJO7jYf6-Y1gOAvCyvfYlainb9XBnvj6zyBWc91vALU8Ft3Q"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/users"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tasks",
+			"item": [
+				{
+					"name": "Show Tasks",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDgzNTMxNDQsImV4cCI6MTcwODQzOTU0NCwiZW1haWwiOiJtYXJjb3MuY3VuaGExMDI1QGdtYWlsLmNvbSJ9.1E7jTS1cLgWbeSaWjSWgMruV0eCvndzSne90yPaJO7jYf6-Y1gOAvCyvfYlainb9XBnvj6zyBWc91vALU8Ft3Q"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/tasks"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Task",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDgzNTMxNDQsImV4cCI6MTcwODQzOTU0NCwiZW1haWwiOiJtYXJjb3MuY3VuaGExMDI1QGdtYWlsLmNvbSJ9.1E7jTS1cLgWbeSaWjSWgMruV0eCvndzSne90yPaJO7jYf6-Y1gOAvCyvfYlainb9XBnvj6zyBWc91vALU8Ft3Q"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Desenvolver uma API RESTful\",\r\n    \"priority\": \"High priority\",\r\n    \"status\": \"To Do\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/tasks"
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Tasks",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDgzNTMxNDQsImV4cCI6MTcwODQzOTU0NCwiZW1haWwiOiJtYXJjb3MuY3VuaGExMDI1QGdtYWlsLmNvbSJ9.1E7jTS1cLgWbeSaWjSWgMruV0eCvndzSne90yPaJO7jYf6-Y1gOAvCyvfYlainb9XBnvj6zyBWc91vALU8Ft3Q"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"Done\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/tasks/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Task",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDgzNTMxNDQsImV4cCI6MTcwODQzOTU0NCwiZW1haWwiOiJtYXJjb3MuY3VuaGExMDI1QGdtYWlsLmNvbSJ9.1E7jTS1cLgWbeSaWjSWgMruV0eCvndzSne90yPaJO7jYf6-Y1gOAvCyvfYlainb9XBnvj6zyBWc91vALU8Ft3Q"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/tasks/1"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

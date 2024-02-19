@@ -3,6 +3,7 @@ CREATE TABLE users (
     id NUMBER PRIMARY KEY,
     email VARCHAR2(255) UNIQUE NOT NULL,
     full_name VARCHAR2(255) NOT NULL,
+    password VARCHAR2(255) NOT NULL,
     image_profile BLOB
 );
 
