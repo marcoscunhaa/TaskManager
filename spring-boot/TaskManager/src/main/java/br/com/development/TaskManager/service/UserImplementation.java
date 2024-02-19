@@ -33,4 +33,13 @@ public class UserImplementation implements UserService{
         }
         return user;
     }
+
+    @Override
+    public User findUserByFullName(String assigned) throws Exception {
+        User user = userRepository.findByFullName(assigned);
+        if(user==null){
+            throw new Exception("user not found with email "+user);
+        }
+        return user;
+    }
 }

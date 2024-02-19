@@ -22,15 +22,16 @@ public class TaskController {
         return taskService.findAllTask();
     }
 
-    @PostMapping()
-    public Task createTask(@RequestBody Task task, @RequestHeader("Authorization") String jwt) throws Exception {
-        User user= userService.findUserByJwt(jwt);
+    @PostMapping("/{assigned}")
+    public Task createTask(@RequestBody Task task, @PathVariable String assigned) throws Exception {
+        User user= userService.findUserByFullName(assigned);
         return taskService.createTask(task, user);
     }
 
-    @PutMapping("/{taskId}")
-    public Task updateTask(@RequestBody Task task, @PathVariable Long taskId) throws Exception {
-        return taskService.updateTask(task, taskId);
+    @PutMapping("/{taskId}/{assigned}")
+    public Task updateTask(@RequestBody Task task, @PathVariable Long taskId, @PathVariable String assigned) throws Exception {
+        User user=userService.findUserByFullName(assigned);
+        return taskService.updateTask(task, taskId, user);
     }
 
     @DeleteMapping("/{taskId}")

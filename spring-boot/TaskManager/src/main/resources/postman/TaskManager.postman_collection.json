@@ -126,7 +126,7 @@
 								}
 							}
 						},
-						"url": "http://localhost:8080/tasks"
+						"url": "http://localhost:8080/tasks/Marcos%20Cunha"
 					},
 					"response": []
 				},
@@ -150,7 +150,7 @@
 								}
 							}
 						},
-						"url": "http://localhost:8080/tasks/1"
+						"url": "http://localhost:8080/tasks/2/Marcos%20Cunha"
 					},
 					"response": []
 				},

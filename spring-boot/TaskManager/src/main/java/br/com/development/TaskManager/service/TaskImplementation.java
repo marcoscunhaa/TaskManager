@@ -40,11 +40,11 @@ public class TaskImplementation implements TaskService{
         return taskRepository.save(createTask);
     }
     @Override
-    public Task updateTask(Task task, Long id) throws Exception {
+    public Task updateTask(Task task, Long id, User user) throws Exception {
         Task oldTask = findTaskById(id);
 
-        if(task.getAssignedUser() !=null){
-            oldTask.setAssignedUser(task.getAssignedUser());
+        if(user !=null){
+            oldTask.setAssignedUser(user);
         }
         if(task.getTitle() !=null){
             oldTask.setTitle(task.getTitle());
