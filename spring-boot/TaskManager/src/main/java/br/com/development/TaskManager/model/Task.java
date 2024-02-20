@@ -1,7 +1,9 @@
 package br.com.development.TaskManager.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Timestamp;
@@ -9,6 +11,8 @@ import java.sql.Timestamp;
 @Setter
 @Getter
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "tasks")
 public class Task {
     @Id
@@ -18,8 +22,8 @@ public class Task {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "assigned_user", referencedColumnName = "id", nullable = false)
-    private User assignedUser;
+    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
+    private User userId;
 
     @Column(name = "title", nullable = false, length = 255)
     private String title;

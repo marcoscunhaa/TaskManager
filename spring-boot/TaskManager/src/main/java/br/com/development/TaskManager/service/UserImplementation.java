@@ -35,11 +35,11 @@ public class UserImplementation implements UserService{
     }
 
     @Override
-    public User findUserByFullName(String assigned) throws Exception {
-        User user = userRepository.findByFullName(assigned);
-        if(user==null){
-            throw new Exception("user not found with email "+user);
+    public User findUserById(Long userId) throws Exception {
+        Optional<User> user = userRepository.findById(userId);
+        if(user.isEmpty()){
+            throw new Exception("user not found with id "+userId);
         }
-        return user;
+        return user.get();
     }
 }

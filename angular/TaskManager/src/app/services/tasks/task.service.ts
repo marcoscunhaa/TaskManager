@@ -35,9 +35,9 @@ export class TaskService {
     );
   }
 
-  createTasks(task:any, assigned: string):Observable<any>{
+  createTasks(task:any, userId:any):Observable<any>{
     const headers=this.getHeaders();
-    return this.http.post(`${this.baseUrl}/tasks/${assigned}`, task, {headers}).pipe(
+    return this.http.post(`${this.baseUrl}/tasks/${userId}`, task, {headers}).pipe(
         tap((newTask)=>{
           const currentState=this.taskSubject.value;
           this.taskSubject.next({...currentState, 
@@ -47,9 +47,9 @@ export class TaskService {
     );
   }
 
-  updateTasks(task: any, assigned: string): Observable<any> {
+  updateTasks(task: any, userId: any): Observable<any> {
     const headers = this.getHeaders();
-    return this.http.put(`${this.baseUrl}/tasks/${task.id}/${assigned}`, task, { headers }).pipe(
+    return this.http.put(`${this.baseUrl}/tasks/${task.id}/${userId}`, task, { headers }).pipe(
       tap((updatedTask: any) => {
         const updatedTasks = this.taskSubject.value.tasks.map((item: any) => 
           item.id === updatedTask.id ? updatedTask : item

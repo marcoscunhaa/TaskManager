@@ -22,7 +22,7 @@
       <div class="modal-content">
         <form>
           <div class="modal-header">
-            <h1 class="modal-title fs-4" id="myModalLabel">Creating new activity</h1>
+            <h1 class="modal-title fs-4" id="myModalLabel">Creating new task</h1>
             <button type="button" class="btn-close" (click)="onHideOrShow()" data-bs-dismiss="modal"
               aria-label="Close"></button>
           </div>
@@ -38,7 +38,7 @@
                 </select>
               </div>
               <div class="form-group mt-2">
-                <label for="inputNome">Title of task:</label>
+                <label for="inputNome">Task Description:</label>
                 <input type="text" [(ngModel)]="task.title" name="title" class="form-control" id="inputNome"
                   placeholder="Write your activity...">
               </div>

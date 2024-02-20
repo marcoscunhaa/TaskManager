@@ -5,6 +5,7 @@ import { AuthService } from '../../services/auth/auth.service';
 import { TaskService } from '../../services/tasks/task.service';
 import { UserService } from '../../services/users/user.service';
 import { Router } from '@angular/router';
+import { tap } from 'rxjs/internal/operators/tap';
 
 @Component({
   selector: 'app-navbar',
@@ -15,20 +16,38 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent {
   //Atributo que recebe o usuário logado
-  user:any=null;
+  user: any = null;
+
+  constructor(private authService: AuthService, private taskService: TaskService, private userService: UserService, private router: Router) { }
+
+  ngOnInit() {
+    this.authService.getUserProfile().subscribe();
+    this.authService.authSubject.subscribe(
+      (auth) => {
+        this.user = auth.user;
+      }
+    );
+    this.userService.getAllUsers().subscribe();
+    this.userService.authSubject.subscribe(
+      (users) => {
+        this.users = users.users;
+      }
+    )
+  }
 
   //Vai receber a lista de usuários do banco
   users = [
     {
-      fullName:'',
-      email:'',
-      password:'',
+      id: '',
+      fullName: '',
+      email: '',
+      password: '',
     }
   ];
 
   //Vai receber os inputs para a nova tarefa
-  task : any = {
-    assignedUser:'',
+  task: any = {
+    assignedUser: '',
     title: '',
     priority: '',
     status: ''
@@ -41,38 +60,36 @@ export class NavbarComponent {
   //Atributo que mostrar e esconde modal de cadastrar tarefa
   modal: boolean = true;
 
-  constructor(private authService:AuthService, private taskService:TaskService, private userService:UserService, private router:Router){}
 
-  ngOnInit(){
-    this.authService.getUserProfile().subscribe();
-    this.authService.authSubject.subscribe(
-      (auth)=>{
-          this.user = auth.user;
-      }
-    );
-    this.userService.getAllUsers().subscribe();
-    this.userService.authSubject.subscribe(
-      (users)=>{
-        this.users=users.users;
-      }
-    )
-  }
 
   @Output() createdTask: EventEmitter<void> = new EventEmitter<void>();
 
   //Limpa os dados de usuário logado
-  onLogout(){
+  onLogout() {
     this.authService.logout();
   }
-  
+
   //Cria uma nova tarefa
-  onSubmit(){
-    this.taskService.createTasks(this.task, this.task.assignedUser).subscribe();
-    this.createdTask.emit();
+  onSubmit() {
+
+    let userId = null;
+
+    for (const user of this.users) {
+      if (user.fullName === this.task.assignedUser) {
+        userId = user.id;
+        break;
+      }
+    }
+
+    this.taskService.createTasks(this.task, userId).pipe(
+      tap(() => {
+        this.createdTask.emit();
+      })
+    ).subscribe();
   }
 
   //Mostra e esconden modal de cadastro de tarefas
-  onHideOrShow(){
+  onHideOrShow() {
     this.modal = !this.modal;
   }
 

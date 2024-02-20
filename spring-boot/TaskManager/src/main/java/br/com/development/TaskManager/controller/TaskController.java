@@ -22,15 +22,15 @@ public class TaskController {
         return taskService.findAllTask();
     }
 
-    @PostMapping("/{assigned}")
-    public Task createTask(@RequestBody Task task, @PathVariable String assigned) throws Exception {
-        User user= userService.findUserByFullName(assigned);
+    @PostMapping("/{userId}")
+    public Task createTask(@RequestBody Task task, @PathVariable Long userId) throws Exception {
+        User user= userService.findUserById(userId);
         return taskService.createTask(task, user);
     }
 
-    @PutMapping("/{taskId}/{assigned}")
-    public Task updateTask(@RequestBody Task task, @PathVariable Long taskId, @PathVariable String assigned) throws Exception {
-        User user=userService.findUserByFullName(assigned);
+    @PutMapping("/{taskId}/{userId}")
+    public Task updateTask(@RequestBody Task task, @PathVariable Long taskId, @PathVariable Long userId) throws Exception {
+        User user=userService.findUserById(userId);
         return taskService.updateTask(task, taskId, user);
     }
 

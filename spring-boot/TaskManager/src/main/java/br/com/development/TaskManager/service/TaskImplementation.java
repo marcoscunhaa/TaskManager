@@ -36,7 +36,7 @@ public class TaskImplementation implements TaskService{
         createTask.setPriority(task.getPriority());
         createTask.setStatus(task.getStatus());
         createTask.setCreatedAt(Timestamp.valueOf(LocalDateTime.now()));
-        createTask.setAssignedUser(user);
+        createTask.setUserId(user);
         return taskRepository.save(createTask);
     }
     @Override
@@ -44,7 +44,7 @@ public class TaskImplementation implements TaskService{
         Task oldTask = findTaskById(id);
 
         if(user !=null){
-            oldTask.setAssignedUser(user);
+            oldTask.setUserId(user);
         }
         if(task.getTitle() !=null){
             oldTask.setTitle(task.getTitle());

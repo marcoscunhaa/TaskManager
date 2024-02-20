@@ -1,0 +1,190 @@
+<section class="min-h-[30vh] gradient-custom-2">
+  <div class="container py-5 min-h-[30vh]">
+    <div class="row d-flex justify-content-center align-items-center min-h-[30vh]">
+      <div class="col-md-12 col-xl-12">
+        <div class="row align-items-center mb-5">
+          <div class="col-md-6">
+            <h5 class="card-title text-center mb-6">Task Manager</h5>
+          </div>
+          <div class="col-md-6">
+            <div class="input-group">
+              <input [(ngModel)]="searchText" (input)="filterTasks()" type="text" class="form-control"
+                placeholder="Pesquisar...">
+            </div>
+          </div>
+        </div>
+
+        <!--Table-->
+        <div class="card mask-custom">
+          <div class="card-body p-4 text-white">
+            <div class="table-responsive">
+
+              <!--Alertas das requisições-->
+              <div *ngIf="isAlertCreated" class="alert alert-success text-center" role="alert">
+                <div class="d-flex justify-content-between align-items-center">
+                  <span class="text-center">Task registered successfully!!</span>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" (click)="isShowOrHideAlertCreated()"
+                    aria-label="Close"></button>
+                </div>
+              </div>
+
+              <div *ngIf="isAlertUpdate" class="alert alert-success text-center" role="alert">
+                <div class="d-flex justify-content-between align-items-center">
+                  <span class="text-center">Task updated successfully!!</span>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" (click)="isShowOrHideAlertUpdate()"
+                    aria-label="Close"></button>
+                </div>
+              </div>
+
+              <div *ngIf="isAlertDelete" class="alert alert-success text-center" role="alert">
+                <div class="d-flex justify-content-between align-items-center">
+                  <span class="text-center">Task deleted successfully!!</span>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" (click)="isShowOrHideAlertDelete()"
+                    aria-label="Close"></button>
+                </div>
+              </div>
+
+              <table class="table text-white mb-0">
+                <thead>
+                  <tr>
+                    <th scope="col">Assigned Member</th>
+                    <th scope="col">Task Description</th>
+                    <th scope="col">Priority</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">CreatedAt</th>
+                    <th scope="col">UpdatedAt</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for(item of renderedTasks; track 1){
+                  <tr class="fw-normal">
+                    <th>
+                      @for(u of users; track 1){
+                      @if(u.id==item.userId.id){
+                      <img src="data:image/png;base64,{{u.imageProfile}}" alt="imageProfile"
+                        style="height: 48px; width: 53px; border-radius: 50%;">
+                      <span class="ms-2">{{u.fullName}}</span>
+                      }
+                      }
+
+                    </th>
+                    <td class="align-middle">
+                      <span>{{item.title}}</span>
+                    </td>
+                    <td class="align-middle">
+                      @switch(item.priority){
+                      @case ("High priority") {
+                      <h6 class="mb-0"><span class="badge bg-danger">{{item.priority}}</span></h6>
+                      }
+                      @case ("Low priority") {
+                      <h6 class="mb-0"><span class="badge bg-success">{{item.priority}}</span></h6>
+                      }
+                      @case ("Medium priority") {
+                      <h6 class="mb-0"><span class="badge bg-warning">{{item.priority}}</span></h6>
+                      }
+                      }
+                    </td>
+                    <td class="align-middle">{{item.status}}</td>
+                    <td class="align-middle">{{item.createdAt | date:'MM/dd/yyyy, HH:mm'}}</td>
+                    <td class="align-middle">{{item.updatedAt | date:'MM/dd/yyyy, HH:mm'}}</td>
+                    <td class="align-middle">
+                      <a (click)="onShowUpdate(item.id)" style="cursor: pointer;" data-mdb-toggle="tooltip"
+                        title="Edit"><i class="bi bi-pencil-square text-warning me-3"></i></a>
+
+                      <a (click)="onShowDelete(item.id, item.title)" style="cursor: pointer;" data-mdb-toggle="tooltip"
+                        title="Delete"><i class="bi bi-x-circle-fill text-danger"></i></a>
+
+                    </td>
+                  </tr>
+                  }
+                  @empty {
+                  <div class="row">No Tasks Exist!</div>
+                  }
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+
+        <!--Modal Atualizar-->
+        <div class="modal fade show" [style.display]="modalUpdated ? 'none':'block'" tabindex="-1"
+          aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <form>
+                <div class="modal-header">
+                  <h1 class="modal-title fs-4" id="myModalLabel">Updating task</h1>
+                  <button type="button" class="btn-close" (click)="onHideUpdate()" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <div class="container">
+                    <div class="form-group mt-2">
+                      <label>Assigned::</label>
+                      <select class="form-select" [(ngModel)]="task.assignedUser" name="assignedUser">
+                        <option value='' selected disabled>Select the assigned collaborator
+                        </option>
+                        @for(u of users; track 1){
+                        <option>{{u.fullName}}</option>
+                        }
+                      </select>
+                    </div>
+                    <div class="form-group mt-2">
+                      <label for="inputNome">Task Description:</label>
+                      <input type="text" [(ngModel)]="task.title" value='' name="title" class="form-control"
+                        id="inputNome" placeholder="Write your activity...">
+                    </div>
+                    <div class="form-group mt-2">
+                      <label>Priority:</label>
+                      <select class="form-select" [(ngModel)]="task.priority" name="priority">
+                        <option value='' selected disabled>Select priority</option>
+                        @for(p of priority; track 1){
+                        <option>{{p}}</option>
+                        }
+                      </select>
+                    </div>
+                    <div class="form-group mt-2">
+                      <label>Status:</label>
+                      <select class="form-select" [(ngModel)]="task.status" name="status">
+                        <option value='' selected disabled>Select status</option>
+                        @for(s of status; track 1){
+                        <option>{{s}}</option>
+                        }
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" (click)="onHideUpdate()" class="btn btn-danger"
+                    data-bs-dismiss="modal">Cancel</button>
+                  <button type="submit" (click)="onUpdate()" (click)="onHideUpdate()"
+                    class="btn btn-primary">Save</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!--Modal Deletar-->
+        <div [style.display]="modalDelete ? 'none':'block'" class="modal fade show" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Confirm delete</h5>
+                <button type="button" (click)="onHideDelete()" class="btn-close" data-bs-dismiss="modal"
+                  aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <p>Are you sure you want to delete the activity: "{{taskTitle}}" ?</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" (click)="onHideDelete()" class="btn btn-danger"
+                  data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" (click)="onDelete()" (click)="onHideDelete()"
+                  class="btn btn-primary">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>

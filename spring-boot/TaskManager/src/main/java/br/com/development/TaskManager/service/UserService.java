@@ -7,5 +7,5 @@ import java.util.List;
 public interface UserService {
     public List<User> getAllUsers();
     public User findUserByJwt(String jwt) throws Exception;
-    public User findUserByFullName(String assigned) throws Exception;
+    public User findUserById(Long userId) throws Exception;
 }

@@ -10,13 +10,13 @@ CREATE TABLE users (
 -- Criar a tabela tasks
 CREATE TABLE tasks (
     id NUMBER PRIMARY KEY,
-    assigned_user NUMBER NOT NULL,
+    user_id NUMBER NOT NULL,
     title VARCHAR2(255) NOT NULL,
     priority VARCHAR2(50) NOT NULL,
     status VARCHAR2(50),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     updated_at TIMESTAMP,
-    FOREIGN KEY (assigned_user) REFERENCES users(id)
+    FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
 -- Criar sequências
