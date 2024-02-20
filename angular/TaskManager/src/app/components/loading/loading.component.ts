@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { TaskService } from '../../services/tasks/task.service';
 
 @Component({
   selector: 'app-loading',
@@ -9,15 +10,13 @@ import { Component } from '@angular/core';
   styleUrl: './loading.component.scss'
 })
 export class LoadingComponent {
-  isLoading: boolean = true;
+  isLoading: boolean = false;
+
+  constructor(private taskService: TaskService) {}
+
   ngOnInit() {
-    this.carregarDados();
+    this.taskService.loading$.subscribe((loading) => {
+      this.isLoading = loading;
+    });
   }
-
-  carregarDados() {
-    setTimeout(() => {
-      this.isLoading = false;
-    }, 2200);
-  }
-
 }

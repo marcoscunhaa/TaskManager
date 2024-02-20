@@ -18,23 +18,6 @@ export class NavbarComponent {
   //Atributo que recebe o usuário logado
   user: any = null;
 
-  constructor(private authService: AuthService, private taskService: TaskService, private userService: UserService, private router: Router) { }
-
-  ngOnInit() {
-    this.authService.getUserProfile().subscribe();
-    this.authService.authSubject.subscribe(
-      (auth) => {
-        this.user = auth.user;
-      }
-    );
-    this.userService.getAllUsers().subscribe();
-    this.userService.authSubject.subscribe(
-      (users) => {
-        this.users = users.users;
-      }
-    )
-  }
-
   //Vai receber a lista de usuários do banco
   users = [
     {
@@ -60,6 +43,22 @@ export class NavbarComponent {
   //Atributo que mostrar e esconde modal de cadastrar tarefa
   modal: boolean = true;
 
+  constructor(private authService: AuthService, private taskService: TaskService, private userService: UserService, private router: Router) { }
+
+  ngOnInit() {
+    this.authService.getUserProfile().subscribe();
+    this.authService.authSubject.subscribe(
+      (auth) => {
+        this.user = auth.user;
+      }
+    );
+    this.userService.getAllUsers().subscribe();
+    this.userService.authSubject.subscribe(
+      (users) => {
+        this.users = users.users;
+      }
+    )
+  }
 
 
   @Output() createdTask: EventEmitter<void> = new EventEmitter<void>();
@@ -71,7 +70,6 @@ export class NavbarComponent {
 
   //Cria uma nova tarefa
   onSubmit() {
-
     let userId = null;
 
     for (const user of this.users) {
@@ -91,6 +89,13 @@ export class NavbarComponent {
   //Mostra e esconden modal de cadastro de tarefas
   onHideOrShow() {
     this.modal = !this.modal;
+
+    this.task = {
+      assignedUser: '',
+      title: '',
+      priority: '',
+      status: ''
+    };
   }
 
 }

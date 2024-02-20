@@ -9,7 +9,7 @@
           <div class="col-md-6">
             <div class="input-group">
               <input [(ngModel)]="searchText" (input)="filterTasks()" type="text" class="form-control"
-                placeholder="Pesquisar...">
+                placeholder="Search...">
             </div>
           </div>
         </div>
@@ -90,10 +90,9 @@
                     <td class="align-middle">{{item.updatedAt | date:'MM/dd/yyyy, HH:mm'}}</td>
                     <td class="align-middle">
                       <a (click)="onShowUpdate(item.id)" style="cursor: pointer;" data-mdb-toggle="tooltip"
-                        title="Edit"><i class="bi bi-pencil-square text-warning me-3"></i></a>
-
+                        title="Edit" class="me-1"><i class="bi bi-pencil-square text-warning icon-hover"></i></a>
                       <a (click)="onShowDelete(item.id, item.title)" style="cursor: pointer;" data-mdb-toggle="tooltip"
-                        title="Delete"><i class="bi bi-x-circle-fill text-danger"></i></a>
+                        title="Delete"><i class="bi bi-x-circle-fill text-danger icon-hover"></i></a>
 
                     </td>
                   </tr>
