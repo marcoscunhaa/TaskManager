@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { RegisterComponent } from '../register/register.component';
 import { LoadingComponent } from '../loading/loading.component';
 import { HomeComponent } from '../home/home.component';
@@ -14,27 +14,32 @@ import { HomeComponent } from '../home/home.component';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
+
+  //Alerta de erro no login
   isAlertLogin: boolean = false;
 
+  isShowOrHideAlert() {
+    this.isAlertLogin = false;
+  }
+
+  //formulário de login
   loginForm: FormGroup = new FormGroup({
     email: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required)
   });
 
-  constructor(public authService: AuthService, private formBuilder: FormBuilder) { }
+  constructor(public authService: AuthService, private formBuilder: FormBuilder, private location: Location) { }
 
   ngOnInit(): void {
+    this.location.go('/login');
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.required],
       password: ['', Validators.required]
     });
   }
 
-  isShowOrHideAlert() {
-    this.isAlertLogin = false;
-  }
-
-  user:any=null
+  //Validação de login
+  user: any = null
 
   onSubmit() {
     if (this.loginForm.valid) {
@@ -47,11 +52,11 @@ export class LoginComponent {
           this.isAlertLogin = true;
         }
       }),
-      this.authService.authSubject.subscribe(
-        (auth) => {
-          this.user = auth.user;
-        }
-      );
+        this.authService.authSubject.subscribe(
+          (auth) => {
+            this.user = auth.user;
+          }
+        );
     };
   }
 

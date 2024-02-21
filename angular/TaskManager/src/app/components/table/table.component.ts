@@ -14,7 +14,7 @@ import { tap } from 'rxjs/internal/operators/tap';
 })
 export class TableComponent {
   //Alertas
-  @Input() 
+  @Input()
   isAlertCreated: boolean = false;
   isAlertUpdate: boolean = false;
   isAlertDelete: boolean = false;
@@ -29,39 +29,6 @@ export class TableComponent {
     this.isAlertDelete = !this.isAlertDelete;
   }
 
-  //Vai receber a lista de atividades do banco
-  tasks = [
-    {
-      id: '',
-      userId:{
-        id:'',
-        fullName:''
-      },
-      title: '',
-      priority: '',
-      status: '',
-      createdAt: '',
-      updatedAt: '',
-
-    }
-  ]
-
-  //Dados que vão ser renderizados
-  renderedTasks = [
-    {
-      id: '',
-      userId:{
-        id:'',
-        fullName:''
-      },
-      title: '',
-      priority: '',
-      status: '',
-      createdAt: '',
-      updatedAt: '',
-    }
-  ]
-
   //Vai receber os input para atualizar os dados
   task: any =
     {
@@ -75,29 +42,33 @@ export class TableComponent {
 
     };
 
+  //Vai receber a lista de atividades do banco
+  tasks = [
+    {
+      id: '',
+      userId: {
+        id: '',
+        fullName: ''
+      },
+      title: '',
+      priority: '',
+      status: '',
+      createdAt: '',
+      updatedAt: '',
+
+    }
+  ]
+
   //Lista de usuários no banco
   users = [
     {
-      id:'',
+      id: '',
       fullName: '',
       email: '',
       password: '',
       imageProfile: ''
     }
   ]
-  
-
-  //Atributos para o select de Atualizar
-  priority = ['High priority', 'Medium priority', 'Low priority'];
-  status = ['To Do', 'Doing', 'Done', 'Updating'];
-
-  //Atributos para o deletar
-  taskId: any;
-  taskTitle: any;
-
-  //Atributos para o modal de update e delete
-  modalUpdated: boolean = true;
-  modalDelete: boolean = true;
 
   constructor(private taskService: TaskService, private userService: UserService) { }
 
@@ -118,6 +89,12 @@ export class TableComponent {
   }
 
   //Mostrar e esconder modal de atualizar
+  priority = ['High priority', 'Medium priority', 'Low priority'];
+  status = ['To Do', 'Doing', 'Done', 'Updating'];
+
+  modalUpdated: boolean = true;
+  modalDelete: boolean = true;
+
   onShowUpdate(id: any) {
     let selectedTask = null;
 
@@ -146,19 +123,20 @@ export class TableComponent {
     this.modalUpdated = !this.modalUpdated;
   }
 
-  //Mostrar o modal de delete
+  //Deleta a atividade selecionada
+  taskId: any;
+  taskTitle: any;
+
   onShowDelete(taskId: any, taskTitle: any) {
     this.taskId = taskId;
     this.taskTitle = taskTitle;
     this.modalDelete = !this.modalDelete;
   }
 
-  //Esconder o modal de delete
   onHideDelete() {
     this.modalDelete = !this.modalDelete;
   }
 
-  //Deleta a atividade selecionada
   onDelete() {
     this.taskService.deleteTasks(this.taskId).pipe(
       tap(() => {
@@ -186,10 +164,25 @@ export class TableComponent {
   }
 
   //Filtro na barra de pesquisa
+  renderedTasks = [
+    {
+      id: '',
+      userId: {
+        id: '',
+        fullName: ''
+      },
+      title: '',
+      priority: '',
+      status: '',
+      createdAt: '',
+      updatedAt: '',
+    }
+  ]
+
   searchText: string = '';
 
   trackByFn(index: number, item: any) {
-    return item.id; 
+    return item.id;
   }
 
   filterTasks() {
@@ -197,7 +190,7 @@ export class TableComponent {
       this.renderedTasks = this.tasks;
       console.log(this.renderedTasks);
     } else {
-      this.renderedTasks = this.tasks.filter(task => 
+      this.renderedTasks = this.tasks.filter(task =>
         task.title.toLowerCase().includes(this.searchText.toLowerCase())
       );
     }

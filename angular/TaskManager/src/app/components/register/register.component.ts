@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service';
@@ -14,16 +14,12 @@ import { HomeComponent } from '../home/home.component';
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent {
-  registerForm: FormGroup = new FormGroup({
-    imageProfile: new FormControl('', Validators.required),
-    fullName: new FormControl('', Validators.required),
-    email: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required)
-  });
 
-  constructor(public authService:AuthService, private formBuilder: FormBuilder) { }
+  //formulário de registrar-se
+  constructor(public authService:AuthService, private formBuilder: FormBuilder, private location: Location) { }
 
   ngOnInit(): void {
+    this.location.go('/register');
     this.registerForm = this.formBuilder.group({
       imageProfile: ['', Validators.required],
       fullName: ['', Validators.required],
@@ -32,6 +28,15 @@ export class RegisterComponent {
     });
   }
 
+  registerForm: FormGroup = new FormGroup({
+    imageProfile: new FormControl('', Validators.required),
+    fullName: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required)
+  });
+
+  
+  //imagem de perfio - prévia
   profilePicUrl: string | undefined;
   profilePicFile: File | null = null;;
   
@@ -64,7 +69,14 @@ export class RegisterComponent {
     };
     input.click();
   }
+
+  showIconOrImage = true;
+
+  goToLogin() {
+    this.showIconOrImage = false;
+  }
   
+  //Função de adicionar o novo register
   user:any=null
 
   onSubmit() {
@@ -83,9 +95,5 @@ export class RegisterComponent {
     }
   }
 
-  showIconOrImage = true;
-
-  goToLogin() {
-    this.showIconOrImage = false;
-  }
+  
 }

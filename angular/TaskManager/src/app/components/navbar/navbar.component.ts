@@ -27,21 +27,6 @@ export class NavbarComponent {
     }
   ];
 
-  //Vai receber os inputs para a nova tarefa
-  task: any = {
-    assignedUser: '',
-    title: '',
-    priority: '',
-    status: ''
-  };
-
-  //Atributos para o select de criar tarefa
-  priority = ['High priority', 'Medium priority', 'Low priority'];
-  status = ['To Do', 'Doing', 'Done', 'Updating'];
-
-  //Atributo que mostrar e esconde modal de cadastrar tarefa
-  modal: boolean = true;
-
   constructor(private authService: AuthService, private taskService: TaskService, private userService: UserService) { }
 
   ngOnInit() {
@@ -59,8 +44,20 @@ export class NavbarComponent {
     )
   }
 
-
   @Output() createdTask: EventEmitter<void> = new EventEmitter<void>();
+
+  //Vai receber os inputs para a nova tarefa
+  task: any = {
+    assignedUser: '',
+    title: '',
+    priority: '',
+    status: ''
+  };
+
+  //Atributos para o select de criar tarefa
+  priority = ['High priority', 'Medium priority', 'Low priority'];
+  status = ['To Do', 'Doing', 'Done', 'Updating'];
+
 
   //Limpa os dados de usuário logado
   onLogout() {
@@ -84,6 +81,9 @@ export class NavbarComponent {
       })
     ).subscribe();
   }
+
+  //Atributo que mostrar e esconde modal de cadastrar tarefa
+  modal: boolean = true;
 
   //Mostra e esconden modal de cadastro de tarefas
   onHideOrShow() {

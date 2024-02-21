@@ -3,6 +3,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { TableComponent } from '../table/table.component';
 import { FooterComponent } from '../footer/footer.component';
 import { LoadingComponent } from '../loading/loading.component';
+import {Location } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +15,14 @@ import { LoadingComponent } from '../loading/loading.component';
 export class HomeComponent {
   isAlertCreated: boolean = false;
 
+  //add url da página
+  constructor(private location: Location){}
+
+  ngOnInit(): void {
+    this.location.go('/home');
+  }
+
+  //Repassar alerta do navbar
   onCreatedTask(event: void) {
     this.isAlertCreated=!this.isAlertCreated;
   }

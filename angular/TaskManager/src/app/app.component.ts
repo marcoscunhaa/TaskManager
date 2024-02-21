@@ -12,5 +12,4 @@ import { CommonModule } from '@angular/common';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  showComponent = true;
 }
