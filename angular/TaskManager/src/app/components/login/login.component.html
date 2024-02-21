@@ -31,14 +31,26 @@
                             <span toggle="#password-field" class="fa fa-fw field-icon toggle-password"></span>
                         </div>
                         <div class="form-group mt-4">
-                            <button type="submit" [disabled]="!loginForm.valid"
+                            <button #submit type="submit" [disabled]="!loginForm.valid"
                                 class="form-control btn btn-outline-light">
                                 Sing In
                             </button>
+                            @defer(on interaction(submit); prefetch on idle){
+                                @if(user){
+                                    <app-home/>
+                                }
+                            }@loading {
+                                <app-loading />
+                            }
                         </div>
                         <div class="form-group d-md-flex d-md-flex justify-content-end">
                             <div class="w-50 text-md-right mt-4 ">
-                                <a href="/register" style="color: #fff;">Create an account?</a>
+                                <a #register style="color: #fff;">Create an account?</a>
+                                @defer(on interaction(register)){
+                                <app-register />
+                                }@loading {
+                                <app-loading />
+                                }
                             </div>
                         </div>
                     </form>

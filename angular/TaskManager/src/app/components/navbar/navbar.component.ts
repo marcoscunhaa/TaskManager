@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service';
 import { TaskService } from '../../services/tasks/task.service';
 import { UserService } from '../../services/users/user.service';
-import { Router } from '@angular/router';
 import { tap } from 'rxjs/internal/operators/tap';
 
 @Component({
@@ -43,7 +42,7 @@ export class NavbarComponent {
   //Atributo que mostrar e esconde modal de cadastrar tarefa
   modal: boolean = true;
 
-  constructor(private authService: AuthService, private taskService: TaskService, private userService: UserService, private router: Router) { }
+  constructor(private authService: AuthService, private taskService: TaskService, private userService: UserService) { }
 
   ngOnInit() {
     this.authService.getUserProfile().subscribe();

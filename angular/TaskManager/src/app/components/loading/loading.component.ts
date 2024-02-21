@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { TaskService } from '../../services/tasks/task.service';
 
 @Component({
   selector: 'app-loading',
@@ -12,11 +11,10 @@ import { TaskService } from '../../services/tasks/task.service';
 export class LoadingComponent {
   isLoading: boolean = false;
 
-  constructor(private taskService: TaskService) {}
-
   ngOnInit() {
-    this.taskService.loading$.subscribe((loading) => {
-      this.isLoading = loading;
+    setTimeout(() => {
+      this.isLoading = !this.isLoading;
     });
   }
+
 }

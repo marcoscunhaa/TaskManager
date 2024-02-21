@@ -12,17 +12,16 @@
                     <h4 class="mb-4 text-center">Create your new account</h4>
 
                     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" action="" class="signin-form ml-3"
-                        enctype="multipart/form-data">
-
+                        enctype="multipart/form-data">  
                         <div class="form-group mb-4">
                             <div class="profile-pic-wrapper " (click)="uploadProfilePic()">
-                                <div class="profile-pic">
-                                    <i class="bi bi-person-add white-icon"></i>
+                                <div *ngIf="showIconOrImage" class="profile-pic">
+                                    <i class="bi bi-person-add white-icon"></i>             
                                     <img *ngIf="profilePicUrl" [src]="profilePicUrl" alt="Profile Picture">
                                 </div>
                             </div>
                         </div>
-
+                        
                         <div class="form-group mb-3">
                             <input formControlName="fullName" type="text" class="form-control" placeholder="Full name"
                                 required>
@@ -37,12 +36,25 @@
                             <span toggle="#password-field" class="fa fa-fw field-icon toggle-password"></span>
                         </div>
                         <div class="form-group mt-3">
-                            <button [disabled]="!registerForm.valid" type="submit"
+                            <button #submit [disabled]="!registerForm.valid" type="submit"
                                 class="form-control btn btn-outline-light submit px-3">Sign Up</button>
                         </div>
+                        @defer(on interaction(submit); prefetch on idle){
+                            @if(user){
+                                <app-home/>
+                            }
+                        }@loading {
+                            <app-loading />
+                        }
                         <div class="form-group d-md-flex d-md-flex justify-content-end">
                             <div class="w-50 text-md-right mt-4 ">
-                                <a href="/login" style="color: #fff;">Have an account?</a>
+                                <a #login (click)="goToLogin()" style="color: #fff;">Have an account?</a>
+                                @defer(on interaction(login); prefetch on idle){
+                                    <app-login/>
+                                }
+                                @loading {
+                                    <app-loading/>
+                                }
                             </div>
                         </div>
                     </form>

@@ -4,19 +4,37 @@
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg navbar-light bg-white">
         <div class="container justify-content-end">
-          <app-navbar (createdTask)="onCreatedTask($event)"></app-navbar>
+          @defer(on idle){
+            <app-navbar (createdTask)="onCreatedTask($event)"/>
+          }
+          @loading {
+            <app-loading/>
+          }
         </div>
       </nav>
       <!-- table -->
       <header>
         <div class="container">
-          <app-table [isAlertCreated]="isAlertCreated"></app-table>
+          @defer(on viewport; prefetch on idle) {
+            <app-table [isAlertCreated]="isAlertCreated"/>
+          }@placeholder {
+            <p>loading table!</p>
+          }
+          @loading {
+            <app-loading/>
+          }
         </div>
       </header>
       <!-- Footer -->
       <footer class="mt-3">
         <div class="container">
-          <app-footer></app-footer>
+          @defer(on viewport; prefetch on idle){
+            <app-footer/>
+          }@placeholder {
+            <p>loading footer!</p>
+          }@loading {
+            <app-loading/>
+          }
         </div>
       </footer>
     </div>

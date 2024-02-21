@@ -1,2 +1,5 @@
-<app-loading></app-loading>
-<router-outlet />
+@defer(on idle){
+    <app-login/>
+}@loading {
+    <app-loading/>
+}

@@ -8,7 +8,6 @@ import { tap } from 'rxjs/internal/operators/tap';
   providedIn: 'root'
 })
 export class AuthService {
-  private isAuthenticated: boolean = false;
 
   private baseUrl = 'http://localhost:8080'
 
@@ -35,18 +34,12 @@ export class AuthService {
   }
 
   login(userData:any):Observable<any>{
-    this.isAuthenticated = true;
     return this.http.post<any>(`${this.baseUrl}/auth/signin`, userData);
   }
-
 
   logout(){
     localStorage.clear();
     this.authSubject.next({});
-    this.isAuthenticated = false;
   }
 
-  isAuthenticatedUser(): boolean {
-    return this.isAuthenticated;
-  }
 }

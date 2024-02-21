@@ -2,12 +2,14 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service';
-import { Router } from '@angular/router';
+import { LoginComponent } from '../login/login.component';
+import { LoadingComponent } from '../loading/loading.component';
+import { HomeComponent } from '../home/home.component';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [FormsModule, CommonModule, ReactiveFormsModule],
+  imports: [FormsModule, CommonModule, ReactiveFormsModule, LoginComponent, LoadingComponent, HomeComponent],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
@@ -19,7 +21,7 @@ export class RegisterComponent {
     password: new FormControl('', Validators.required)
   });
 
-  constructor(public authServie:AuthService, private router: Router, private formBuilder: FormBuilder) { }
+  constructor(public authService:AuthService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
@@ -62,16 +64,28 @@ export class RegisterComponent {
     };
     input.click();
   }
+  
+  user:any=null
 
   onSubmit() {
     if (this.registerForm.valid) {
-      this.authServie.register(this.registerForm.value).subscribe({
+      this.authService.register(this.registerForm.value).subscribe({
         next:(response)=>{
           localStorage.setItem("jwt", response.jwt);
-          this.authServie.getUserProfile().subscribe();
-          this.router.navigate(['/home']); 
+          this.authService.getUserProfile().subscribe();
+          this.authService.authSubject.subscribe(
+            (auth) => {
+              this.user = auth.user;
+            }
+          );
         }
       })
     }
+  }
+
+  showIconOrImage = true;
+
+  goToLogin() {
+    this.showIconOrImage = false;
   }
 }
