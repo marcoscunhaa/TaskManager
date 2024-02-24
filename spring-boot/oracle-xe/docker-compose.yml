@@ -1,0 +1,9 @@
+version: '3.7'
+services:
+  oracle-database:
+    container_name: oracle-database
+    image: gvenzl/oracle-xe
+    ports:
+      - "1521:1521"
+    environment:
+      ORACLE_PASSWORD: "admin"
