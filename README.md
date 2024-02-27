@@ -1,12 +1,13 @@
 # :computer: TaskManager
 
-This is a web application developed using Spring Boot (v3.2.3) and Angular (v17.2.1). It allows managing tasks through a user-friendly interface using Bootstrap (v5.3) and has a RESTful API for interaction with the backend.
+This is a web application developed using Spring Boot (v3.2.3) and Angular (v17.2.1). It allows managing tasks through a user-friendly interface and has a RESTful API for interaction with the backend.
 
 ## :pushpin: Features
 
 * Task management: Creation, editing, deletion, searching, and viewing of tasks.
 * Authentication and authorization: Uses Spring Security and JWT token for user authentication.
 * Performance: Implements lazy loading techniques for optimized data loading and performance.
+* Responsiveness: Utilizes Bootstrap(v5.3) for creating a responsive user interface, ensuring compatibility across various devices and screen sizes.
 * Data persistence: Utilizes JPA Repository with Hibernate for interaction with the MySQL database, automatically generating tables.
 * Reactivity: Uses RxJS for asynchronous operations on the frontend.
 
