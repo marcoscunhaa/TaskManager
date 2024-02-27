@@ -39,19 +39,3 @@ Access the application at `http://localhost:4200`.
 ## :bookmark_tabs: API Documentation
 
 The API documentation can be found in the Postman request collection, available at `spring-boot/postman/TaskManager.collection.json`.
-
-
-
-## :globe_with_meridians: Test environment
-
-**Created new user:**
-
-[![SFFW2.gif](https://s9.gifyu.com/images/SFFW2.gif "addUser")](https://gifyu.com/image/SFFW2)
-
-
-
-**Task Manager:**
-
-[![SFFgc.gif](https://s9.gifyu.com/images/SFFgc.gif)](https://gifyu.com/image/SFFgc)
-
-
