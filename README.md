@@ -24,6 +24,7 @@ This is a web application developed using Spring Boot (v3.2.3) and Angular (v17.
 1. **Backend**:
    
    * Navigate to the `spring-boot` folder.
+   * Run `mvn clean install` to download dependencies and build the project.
    * Run `docker-compose up -d` to start the MySQL container.
    * Import the project into your favorite IDE.
    * Start the Spring Boot application.
@@ -39,3 +40,5 @@ Access the application at `http://localhost:4200`.
 ## :bookmark_tabs: API Documentation
 
 The API documentation can be found in the Postman request collection, available at `spring-boot/postman/TaskManager.collection.json`.
+
+
