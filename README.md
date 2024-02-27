@@ -6,7 +6,7 @@ This is a web application developed using Spring Boot (v3.2.3) and Angular (v17.
 
 * Task management: Creation, editing, deletion, searching, and viewing of tasks.
 * Authentication and authorization: Uses Spring Security and JWT token for user authentication.
-* Data persistence: Utilizes JPA Repository for interaction with the MySQL database.
+* Data persistence: Utilizes JPA Repository with Hibernate for interaction with the MySQL database, automatically generating tables.
 * Reactivity: Uses RxJS for asynchronous operations on the frontend.
 
 ## :memo: Requirements
@@ -36,5 +36,3 @@ Access the application at `http://localhost:4200`.
 ## :bookmark_tabs: API Documentation
 
 The API documentation can be found in the Postman request collection, available at `spring-boot/postman/TaskManager.collection.json`.
-
-
