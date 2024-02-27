@@ -14,8 +14,7 @@ import lombok.Setter;
 @Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
-    @SequenceGenerator(name = "user_sequence", sequenceName = "users_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
@@ -28,6 +27,7 @@ public class User {
     @Column(name = "password", nullable = false, length = 255)
     private String password;
 
-    @Column(name = "image_profile")
+    @Lob
+    @Column(name = "image_profile", columnDefinition="LONGBLOB")
     private byte[] imageProfile;
 }

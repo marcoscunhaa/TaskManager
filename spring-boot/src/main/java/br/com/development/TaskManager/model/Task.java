@@ -16,8 +16,7 @@ import java.sql.Timestamp;
 @Table(name = "tasks")
 public class Task {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "task_sequence")
-    @SequenceGenerator(name = "task_sequence", sequenceName = "tasks_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
