@@ -36,7 +36,7 @@
                             <span toggle="#password-field" class="fa fa-fw field-icon toggle-password"></span>
                         </div>
                         <div class="form-group mt-3">
-                            <button #submit [disabled]="!registerForm.valid" type="submit"
+                            <button #submit (click)="hideImage()" [disabled]="!registerForm.valid" type="submit"
                                 class="form-control btn btn-outline-light submit px-3">Sign Up</button>
                         </div>
                         @defer(on interaction(submit); prefetch on idle){
@@ -48,7 +48,7 @@
                         }
                         <div class="form-group d-md-flex d-md-flex justify-content-end">
                             <div class="w-50 text-md-right mt-4 ">
-                                <a #login (click)="goToLogin()" style="color: #fff;">Have an account?</a>
+                                <a #login (click)="hideImage()" style="color: #fff;">Have an account?</a>
                                 @defer(on interaction(login); prefetch on idle){
                                     <app-login/>
                                 }

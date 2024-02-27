@@ -6,6 +6,7 @@ This is a web application developed using Spring Boot (v3.2.3) and Angular (v17.
 
 * Task management: Creation, editing, deletion, searching, and viewing of tasks.
 * Authentication and authorization: Uses Spring Security and JWT token for user authentication.
+* Performance: Implements lazy loading techniques for optimized data loading and performance.
 * Data persistence: Utilizes JPA Repository with Hibernate for interaction with the MySQL database, automatically generating tables.
 * Reactivity: Uses RxJS for asynchronous operations on the frontend.
 

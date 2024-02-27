@@ -72,7 +72,7 @@ export class RegisterComponent {
 
   showIconOrImage = true;
 
-  goToLogin() {
+  hideImage() {
     this.showIconOrImage = false;
   }
   
