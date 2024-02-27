@@ -42,3 +42,9 @@ Access the application at `http://localhost:4200`.
 The API documentation can be found in the Postman request collection, available at `spring-boot/postman/TaskManager.collection.json`.
 
 
+
+## Images
+
+[![SFFdZ.gif](https://s9.gifyu.com/images/SFFdZ.gif "register")](https://gifyu.com/image/SFFdZ)
+
+
