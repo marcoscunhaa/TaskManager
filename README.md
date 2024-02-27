@@ -7,7 +7,6 @@ This is a web application developed using Spring Boot (v3.2.3) and Angular (v17.
 * Task management: Creation, editing, deletion, searching, and viewing of tasks.
 * Authentication and authorization: Uses Spring Security and JWT token for user authentication.
 * Performance: Implements lazy loading techniques for optimized data loading and performance.
-* 
 * Data persistence: Utilizes JPA Repository with Hibernate for interaction with the MySQL database, automatically generating tables.
 * Reactivity: Uses RxJS for asynchronous operations on the frontend.
 * Responsiveness: Utilizes Bootstrap(v5.3) for creating a responsive user interface, ensuring compatibility across various devices and screen sizes.
@@ -43,8 +42,16 @@ The API documentation can be found in the Postman request collection, available 
 
 
 
-## Images
+## :globe_with_meridians: Test environment
 
-[![SFFdZ.gif](https://s9.gifyu.com/images/SFFdZ.gif "register")](https://gifyu.com/image/SFFdZ)
+**Created new user:**
+
+[![SFFW2.gif](https://s9.gifyu.com/images/SFFW2.gif "addUser")](https://gifyu.com/image/SFFW2)
+
+
+
+**Task Manager:**
+
+[![SFFgc.gif](https://s9.gifyu.com/images/SFFgc.gif)](https://gifyu.com/image/SFFgc)
 
 

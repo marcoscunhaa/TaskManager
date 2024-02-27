@@ -73,6 +73,10 @@ export class RegisterComponent {
   showIconOrImage = true;
 
   hideImage() {
+    this.profilePicUrl = '';
+  }
+
+  hideIcon(){
     this.showIconOrImage = false;
   }
   
