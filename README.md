@@ -1,38 +1,40 @@
 # :computer: TaskManager
 
-Trata-se de uma aplicação web desenvolvida com Spring Boot(v3.2.3) e Angular(v17.2.1).  Permite gerenciar tarefas através de uma interface amigável utilizando Bootstrap(v5.3) e possui uma API RESTful para interação com o backend.
+This is a web application developed using Spring Boot (v3.2.3) and Angular (v17.2.1). It allows managing tasks through a user-friendly interface using Bootstrap (v5.3) and has a RESTful API for interaction with the backend.
 
-## :pushpin: Funcionalidades
+## :pushpin: Features
 
-- Gerenciamento de tarefas: Criação, edição, exclusão, pesquisa e visualização de tarefas.
-- Autenticação e autorização: Utiliza Spring Security e JWT token para autenticação de usuários.
-- Persistência de dados: Utiliza JPA Repository para interação com o banco de dados MySQL.
-- Reatividade: Utiliza RxJS para operações assíncronas no frontend.
+* Task management: Creation, editing, deletion, searching, and viewing of tasks.
+* Authentication and authorization: Uses Spring Security and JWT token for user authentication.
+* Data persistence: Utilizes JPA Repository for interaction with the MySQL database.
+* Reactivity: Uses RxJS for asynchronous operations on the frontend.
 
-## :memo: Pré-requisitos
+## :memo: Requirements
 
-- JDK v17.0.10
-- Maven v3.9.6
-- Docker v4.27.2
-- Node.js v21.6.2
+* JDK v17.0.10
+* Maven v3.9.6
+* Docker v4.27.2
+* Node.js v21.6.2
 
-## :gear: Configuração e Execução
+## :gear: Configuration and Execution
 
-1. **Backend Spring Boot**:
+1. **Backend**:
    
-   - Navegue até a pasta `spring-boot`.
-   - Execute `docker-compose up -d` para iniciar o contêiner do MySQL.
-   - Importe o projeto em sua IDE favorita.
-   - Inicie a aplicação Spring Boot.
+   * Navigate to the `spring-boot` folder.
+   * Run `docker-compose up -d` to start the MySQL container.
+   * Import the project into your favorite IDE.
+   * Start the Spring Boot application.
 
-2. **Frontend Angular**:
+2. **Frontend**:
    
-   - Navegue até a pasta `angular`.
-   - Execute `npm install` para instalar as dependências.
-   - Execute `ng serve` para iniciar o servidor de desenvolvimento do Angular.
+   * Navigate to the `angular` folder.
+   * Run `npm install` to install the dependencies.
+   * Run `ng serve` to start the Angular development server.
 
-Acesse a aplicação em `http://localhost:4200`.
+Access the application at `http://localhost:4200`.
 
-## :bookmark_tabs: Documentação da API
+## :bookmark_tabs: API Documentation
 
-A documentação da API pode ser encontrada na coleção de requisições do Postman, disponível em `spring-boot/postman/TaskManager.collection.json`.
+The API documentation can be found in the Postman request collection, available at `spring-boot/postman/TaskManager.collection.json`.
+
+
