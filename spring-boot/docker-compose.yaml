@@ -3,8 +3,8 @@ services:
   mysql:
     image: mysql:latest
     environment:
-      MYSQL_ROOT_PASSWORD: admin
       MYSQL_DATABASE: development
+      MYSQL_ROOT_PASSWORD: admin
       MYSQL_USER: dev
       MYSQL_PASSWORD: admin
     ports:

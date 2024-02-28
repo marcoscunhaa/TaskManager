@@ -5,11 +5,13 @@ This is a web application developed using Spring Boot (v3.2.3) and Angular (v17.
 ## :pushpin: Features
 
 * Task management: Creation, editing, deletion, searching, and viewing of tasks.
+* RESTful API: Provides endpoints for seamless interaction with the backend.
+* Data persistence: Utilizes JPA Repository with Hibernate for interaction with the MySQL database, automatically generating tables.
 * Authentication and authorization: Uses Spring Security and JWT token for user authentication.
 * Performance: Implements lazy loading techniques for optimized data loading and performance.
-* Data persistence: Utilizes JPA Repository with Hibernate for interaction with the MySQL database, automatically generating tables.
 * Reactivity: Uses RxJS for asynchronous operations on the frontend.
 * Responsiveness: Utilizes Bootstrap(v5.3) for creating a responsive user interface, ensuring compatibility across various devices and screen sizes.
+* Docker Support: Easily deployable using Docker containers for MySql database.
 
 ## :memo: Requirements
 
@@ -38,4 +40,4 @@ Access the application at `http://localhost:4200`.
 
 ## :bookmark_tabs: API Documentation
 
-The API documentation can be found in the Postman request collection, available at `spring-boot/postman/TaskManager.collection.json`.
+The API documentation can be found in the Postman request collection, available at `spring-boot/postman/TaskManager.collection.json`
