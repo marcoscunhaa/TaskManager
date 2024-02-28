@@ -15,6 +15,13 @@ import { HomeComponent } from '../home/home.component';
 })
 export class RegisterComponent {
 
+  //Alerta de erro no register
+  isAlertRegister: boolean = false;
+
+  isShowOrHideAlert() {
+    this.isAlertRegister = false;
+  }
+
   //formulário de registrar-se
   constructor(public authService:AuthService, private formBuilder: FormBuilder, private location: Location) { }
 
@@ -94,6 +101,11 @@ export class RegisterComponent {
               this.user = auth.user;
             }
           );
+        },
+        error: (error) => {
+          if (error.status === 409) {
+            this.isAlertRegister = true;
+          }
         }
       })
     }
