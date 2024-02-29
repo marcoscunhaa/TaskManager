@@ -41,3 +41,31 @@ Access the application at `http://localhost:4200`.
 ## :bookmark_tabs: API Documentation
 
 The API documentation can be found in the Postman request collection, available at `spring-boot/postman/TaskManager.collection.json`
+
+
+
+## :globe_with_meridians: Interface Test
+
+<a href="https://ibb.co/v3qvqBS"><img src="https://i.ibb.co/v3qvqBS/Login.gif" alt="Login" border="0"></a>
+
+
+
+<a href="https://ibb.co/k1zPkj8"><img src="https://i.ibb.co/k1zPkj8/Register.gif" alt="Register" border="0"></a>
+
+
+
+<a href="https://ibb.co/nwSZk62"><img src="https://i.ibb.co/nwSZk62/Create.gif" alt="Create" border="0"></a>
+
+
+
+<a href="https://ibb.co/rv03L9P"><img src="https://i.ibb.co/rv03L9P/Update.gif" alt="Update" border="0"></a>
+
+
+
+<a href="https://ibb.co/pKW5h0q"><img src="https://i.ibb.co/pKW5h0q/Delete.gif" alt="Delete" border="0"></a>
+
+
+
+<a href="https://ibb.co/hsVgyRB"><img src="https://i.ibb.co/hsVgyRB/Search.gif" alt="Search" border="0"></a>
+
+
