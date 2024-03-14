@@ -44,6 +44,14 @@
                 </div>
               </div>
 
+              <div *ngIf="isAlertCreatedNull" class="alert alert-danger text-center" role="alert">
+                <div class="d-flex justify-content-between align-items-center">
+                  <span class="text-center">Unable to register an empty task!</span>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert"
+                    (click)="isShowOrHideAlertCreatedNull()" aria-label="Close"></button>
+                </div>
+              </div>
+
               <table class="table text-white mb-0">
                 <thead>
                   <tr>
@@ -89,8 +97,8 @@
                     <td class="align-middle">{{item.createdAt | date:'MM/dd/yyyy, HH:mm'}}</td>
                     <td class="align-middle">{{item.updatedAt | date:'MM/dd/yyyy, HH:mm'}}</td>
                     <td class="align-middle">
-                      <a (click)="onShowUpdate(item.id)" style="cursor: pointer;" data-mdb-toggle="tooltip"
-                        title="Edit" class="me-1"><i class="bi bi-pencil-square text-warning icon-hover"></i></a>
+                      <a (click)="onShowUpdate(item.id)" style="cursor: pointer;" data-mdb-toggle="tooltip" title="Edit"
+                        class="me-1"><i class="bi bi-pencil-square text-warning icon-hover"></i></a>
                       <a (click)="onShowDelete(item.id, item.title)" style="cursor: pointer;" data-mdb-toggle="tooltip"
                         title="Delete"><i class="bi bi-x-circle-fill text-danger icon-hover"></i></a>
 

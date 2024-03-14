@@ -16,9 +16,14 @@ export class TableComponent {
   //Alertas
   @Input()
   isAlertCreated: boolean = false;
+  @Input()
+  isAlertCreatedNull: boolean = false;
   isAlertUpdate: boolean = false;
   isAlertDelete: boolean = false;
 
+  isShowOrHideAlertCreatedNull() {
+    this.isAlertCreatedNull = !this.isAlertCreatedNull;
+  }
   isShowOrHideAlertCreated() {
     this.isAlertCreated = !this.isAlertCreated;
   }

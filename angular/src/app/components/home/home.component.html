@@ -5,7 +5,7 @@
       <nav class="navbar navbar-expand-lg navbar-light bg-white">
         <div class="container justify-content-end">
           @defer(on idle){
-            <app-navbar (createdTask)="onCreatedTask($event)"/>
+            <app-navbar (createdTask)="onCreatedTask($event)" (createdTaskNull)="onCreatedTaskNull($event)"/>
           }
           @loading {
             <app-loading/>
@@ -16,7 +16,7 @@
       <header>
         <div class="container">
           @defer(on viewport; prefetch on idle) {
-            <app-table [isAlertCreated]="isAlertCreated"/>
+            <app-table [isAlertCreated]="isAlertCreated" [isAlertCreatedNull]="isAlertCreatedNull"/>
           }@placeholder {
             <p>loading table!</p>
           }

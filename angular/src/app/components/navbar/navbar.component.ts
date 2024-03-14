@@ -45,6 +45,7 @@ export class NavbarComponent {
   }
 
   @Output() createdTask: EventEmitter<void> = new EventEmitter<void>();
+  @Output() createdTaskNull: EventEmitter<void> = new EventEmitter<void>();
 
   //Vai receber os inputs para a nova tarefa
   task: any = {
@@ -68,6 +69,10 @@ export class NavbarComponent {
   onSubmit() {
     let userId = null;
 
+    if(this.task.assignedUser === '' || this.task.title === '' || this.task.priority === '' || this.task.status === ''){
+      this.createdTaskNull.emit();
+    }
+
     for (const user of this.users) {
       if (user.fullName === this.task.assignedUser) {
         userId = user.id;
@@ -77,7 +82,7 @@ export class NavbarComponent {
 
     this.taskService.createTasks(this.task, userId).pipe(
       tap(() => {
-        this.createdTask.emit();
+          this.createdTask.emit();
       })
     ).subscribe();
   }
