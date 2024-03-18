@@ -1,4 +1,3 @@
-<!-- register.component.html -->
 <section class="ftco-section">
     <div class="container">
         <div class="row justify-content-center">
@@ -11,19 +10,19 @@
                 <div class="login-wrap p-0">
                     <h4 class="mb-4 text-center">Create your new account</h4>
 
-                    <!--Mensagem de alerta do register-->
-                    <div *ngIf="isAlertRegister" class="alert alert-danger text-center" role="alert">
+                    <!-- Mensagem de alerta do registro -->
+                    <div *ngIf="isAlertErrorEmail" class="alert alert-danger text-center" role="alert">
                         <div class="d-flex justify-content-between align-items-center">
                             <span class="text-center">Email used by another account!</span>
                             <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                (click)="isShowOrHideAlert()" aria-label="Close"></button>
+                                (click)="isShowOrHideAlertErrorEmail()" aria-label="Close"></button>
                         </div>
                     </div>
 
                     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" action="" class="signin-form ml-3"
                         enctype="multipart/form-data">
-                        <div class="form-group mb-4">
-                            <div class="profile-pic-wrapper " (click)="uploadProfilePic()">
+                        <div class="form-group mb-4 text-center">
+                            <div class="profile-pic-wrapper" (click)="uploadProfilePic()">
                                 <div *ngIf="showIconOrImage" class="profile-pic">
                                     <i class="bi bi-person-add white-icon"></i>
                                     <img *ngIf="profilePicUrl" [src]="profilePicUrl" alt="Profile Picture">
@@ -32,37 +31,46 @@
                         </div>
 
                         <div class="form-group mb-3">
-                            <input formControlName="fullName" type="text" class="form-control" placeholder="Full name"
+                            <input formControlName="fullName" type="text" class="form-control" placeholder="Full Name"
                                 required>
                         </div>
                         <div class="form-group mb-3">
                             <input formControlName="email" type="text" class="form-control" placeholder="Email"
                                 required>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                             <input formControlName="password" id="password-field" type="password" class="form-control"
                                 placeholder="Password" required>
                             <span toggle="#password-field" class="fa fa-fw field-icon toggle-password"></span>
+                        </div>
+                        <div class="form-group">
+                            <input formControlName="passwordConfirmation" type="password" class="form-control"
+                                placeholder="Confirm Password" required>
+                        </div>
+                        <div *ngIf="registerForm.controls['passwordConfirmation'].touched && registerForm.hasError('passwordMismatch')" 
+                             class="alert alert-warning text-center" role="alert">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="text-center">Passwords do not match!</span>
+                            </div>
                         </div>
                         <div class="form-group mt-3">
                             <button #submit (click)="hideImage()" [disabled]="!registerForm.valid" type="submit"
                                 class="form-control btn btn-outline-light submit px-3">Sign Up</button>
                         </div>
                         @defer(on interaction(submit); prefetch on idle){
-                        @if(user){
-                        <app-home />
-                        }
+                            @if(user){
+                                <app-home />
+                            }
                         }@loading {
-                        <app-loading />
+                            <app-loading />
                         }
-                        <div class="form-group d-md-flex d-md-flex justify-content-end">
-                            <div class="w-50 text-md-right mt-4 ">
+                        <div class="form-group d-md-flex d-md-flex justify-content-center">
+                            <div class="w-100 text-end mt-4 mb-2">
                                 <a #login (click)="hideIcon()" style="color: #fff;">Have an account?</a>
                                 @defer(on interaction(login); prefetch on idle){
-                                <app-login />
-                                }
-                                @loading {
-                                <app-loading />
+                                    <app-login />
+                                }@loading {
+                                    <app-loading />
                                 }
                             </div>
                         </div>

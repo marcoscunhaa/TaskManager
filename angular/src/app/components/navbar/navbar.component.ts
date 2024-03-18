@@ -1,17 +1,17 @@
-import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service';
 import { TaskService } from '../../services/tasks/task.service';
 import { UserService } from '../../services/users/user.service';
 import { tap } from 'rxjs/internal/operators/tap';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.scss'
+  styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
   //Atributo que recebe o usuário logado
@@ -45,6 +45,7 @@ export class NavbarComponent {
   }
 
   @Output() createdTask: EventEmitter<void> = new EventEmitter<void>();
+  @Output() createdTaskNull: EventEmitter<void> = new EventEmitter<void>();
 
   //Vai receber os inputs para a nova tarefa
   task: any = {
@@ -67,6 +68,10 @@ export class NavbarComponent {
   //Cria uma nova tarefa
   onSubmit() {
     let userId = null;
+
+    if (this.task.assignedUser === '' || this.task.title === '' || this.task.priority === '' || this.task.status === '') {
+      this.createdTaskNull.emit();
+    }
 
     for (const user of this.users) {
       if (user.fullName === this.task.assignedUser) {
@@ -96,5 +101,4 @@ export class NavbarComponent {
       status: ''
     };
   }
-
 }

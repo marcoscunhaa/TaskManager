@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap');
+
 :host {
     display: block;
     position: fixed;
@@ -9,17 +11,17 @@
     background-size: cover;
     background-position: center;
     overflow: hidden;
+    font-family: "Dosis", sans-serif;
+}
 
-    &::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.2);
-        z-index: -1;
-    }
+:host::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
 }
 
 .heading-section {
@@ -43,17 +45,17 @@ input.form-control {
     padding-left: 20px;
     padding-right: 20px;
     height: 50px;
+}
 
-    &:hover,
-    &:focus {
-        background-color: transparent;
-        outline: none;
-        box-shadow: 0 0 5px 0 rgb(252, 252, 252);
-    }
+input.form-control:hover,
+input.form-control:focus {
+    background-color: transparent;
+    outline: none;
+    box-shadow: 0 0 5px 0 rgb(8, 8, 8);
+}
 
-    &::placeholder {
-        color: #fff;
-    }
+input.form-control::placeholder {
+    color: #fff;
 }
 
 button.btn.btn-outline-light {
@@ -66,30 +68,30 @@ button.btn.btn-outline-light {
     font-weight: normal;
     text-transform: uppercase;
     outline: none;
-
-    &:hover {
-        background-color: #ff6161;
-        outline: none;
-        font-size: 1rem;
-        box-shadow: 0 0 5px 0 rgb(252, 252, 252);
-        color: #fff;
-    }
-
-    &:focus {
-        color: #fff;
-        outline: none;
-        box-shadow: 0 0 5px 0 rgb(252, 252, 252);
-    }
 }
 
-a{
+button.btn.btn-outline-light:hover {
+    background-color: #ff6161;
+    outline: none;
+    font-size: 1rem;
+    box-shadow: 0 0 5px 0 rgb(240, 79, 79);
+    color: #fff;
+}
+
+button.btn.btn-outline-light:focus {
+    color: #fff;
+    outline: none;
+    box-shadow: 0 0 5px 0 rgb(240, 79, 79);
+}
+
+a {
     color: #fff;
     text-decoration: none;
     font-size: 18px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 1.5);
     cursor: pointer;
+}
 
-    &:hover {
-        border-bottom: 2px solid #fff;
-    }
+a:hover {
+    border-bottom: 2px solid #fff;
 }

@@ -1,24 +1,29 @@
-import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { TaskService } from '../../services/tasks/task.service';
 import { UserService } from '../../services/users/user.service';
 import { tap } from 'rxjs/internal/operators/tap';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-table',
   standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './table.component.html',
-  styleUrl: './table.component.scss'
+  styleUrl: './table.component.css'
 })
 export class TableComponent {
   //Alertas
   @Input()
   isAlertCreated: boolean = false;
+  @Input()
+  isAlertCreatedNull: boolean = false;
   isAlertUpdate: boolean = false;
   isAlertDelete: boolean = false;
 
+  isShowOrHideAlertCreatedNull() {
+    this.isAlertCreatedNull = !this.isAlertCreatedNull;
+  }
   isShowOrHideAlertCreated() {
     this.isAlertCreated = !this.isAlertCreated;
   }
@@ -188,12 +193,10 @@ export class TableComponent {
   filterTasks() {
     if (!this.searchText) {
       this.renderedTasks = this.tasks;
-      console.log(this.renderedTasks);
     } else {
       this.renderedTasks = this.tasks.filter(task =>
         task.title.toLowerCase().includes(this.searchText.toLowerCase())
       );
     }
   }
-
 }

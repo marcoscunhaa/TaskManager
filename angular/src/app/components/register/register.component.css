@@ -1,3 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap');
+
+@media (max-height: 930px) {
+  :host {
+    overflow: auto;
+  }
+}
+
+@media (min-height: 950px) {
+  :host {
+    overflow: hidden;
+  }
+}
+
 :host {
   display: block;
   position: fixed;
@@ -8,18 +22,18 @@
   background-image: url('/assets/bg.webp');
   background-size: cover;
   background-position: center;
-  overflow: hidden;
+  font-family: "Dosis", sans-serif;
+}
 
-  &::before {
+:host::before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.2);
     z-index: -1;
-  }
+    overflow-y: auto;
 }
 
 .heading-section {
@@ -43,17 +57,17 @@ input.form-control {
   padding-left: 20px;
   padding-right: 20px;
   height: 50px;
+}
 
-  &:hover,
-  &:focus {
-    background-color: transparent;
-    outline: none;
-    box-shadow: 0 0 5px 0 rgb(252, 252, 252);
-  }
+input.form-control:hover,
+input.form-control:focus {
+  background-color: transparent;
+  outline: none;
+  box-shadow: 0 0 5px 0 rgb(8, 8, 8);
+}
 
-  &::placeholder {
-    color: #fff;
-  }
+input.form-control::placeholder {
+  color: #fff;
 }
 
 button.btn.btn-outline-light {
@@ -66,20 +80,20 @@ button.btn.btn-outline-light {
   font-weight: normal;
   text-transform: uppercase;
   outline: none;
+}
 
-  &:hover {
-    background-color: #ff6161;
-    outline: none;
-    font-size: 1rem;
-    box-shadow: 0 0 5px 0 rgb(252, 252, 252);
-    color: #fff;
-  }
+button.btn.btn-outline-light:hover {
+  background-color: #ff6161;
+  outline: none;
+  font-size: 1rem;
+  box-shadow: 0 0 5px 0 rgb(240, 79, 79);
+  color: #fff;
+}
 
-  &:focus {
-    color: #fff;
-    outline: none;
-    box-shadow: 0 0 5px 0 rgb(252, 252, 252);
-  }
+button.btn.btn-outline-light:focus {
+  color: #fff;
+  outline: none;
+  box-shadow: 0 0 5px 0 rgb(252, 252, 252);
 }
 
 .profile-pic-wrapper {
@@ -91,11 +105,14 @@ button.btn.btn-outline-light {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  margin-left: 36%;
+  margin: 0 auto;
+  /* Centralizar */
+  margin-bottom: 20px;
+  /* Espaço entre elementos */
+}
 
-  &:hover {
-    opacity: 0.7;
-  }
+.profile-pic-wrapper:hover {
+  opacity: 0.7;
 }
 
 .profile-pic {
@@ -106,38 +123,38 @@ button.btn.btn-outline-light {
   display: flex;
   justify-content: center;
   align-items: center;
+}
 
-  img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-    z-index: 2;
-  }
+.profile-pic img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  z-index: 2;
+}
 
-  .bi-person-add {
-    position: relative;
-    z-index: 2;
-    overflow: hidden;
-    font-size: 2em;
-  }
+.profile-pic .bi-person-add {
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  font-size: 2em;
 }
 
 .white-icon {
   color: white;
 }
 
-a{
+a {
   color: #fff;
   text-decoration: none;
   font-size: 18px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 1.5);
   cursor: pointer;
+}
 
-  &:hover {
-      border-bottom: 2px solid #fff;
-  }
+a:hover {
+  border-bottom: 1px solid #fff;
 }

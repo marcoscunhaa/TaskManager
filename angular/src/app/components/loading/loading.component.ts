@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './loading.component.html',
-  styleUrl: './loading.component.scss'
+  styleUrl: './loading.component.css'
 })
 export class LoadingComponent {
   isLoading: boolean = false;
@@ -16,5 +16,4 @@ export class LoadingComponent {
       this.isLoading = !this.isLoading;
     });
   }
-
 }

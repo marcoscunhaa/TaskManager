@@ -10,21 +10,21 @@ import { tap } from 'rxjs/internal/operators/tap';
 export class UserService {
   private baseUrl = 'http://localhost:8080'
 
-  constructor(private http:HttpClient) {}
-  
+  constructor(private http: HttpClient) { }
+
   authSubject = new BehaviorSubject<any>({
-    users:[],
+    users: [],
   })
 
-  getAllUsers():Observable<any>{
-    const headers= new HttpHeaders({
+  getAllUsers(): Observable<any> {
+    const headers = new HttpHeaders({
       Authorization: `Bearer ${localStorage.getItem("jwt")}`
-     })
-    return this.http.get(`${this.baseUrl}/users`, {headers}).pipe(
-        tap((users)=>{
-          const currentState=this.authSubject.value;
-          this.authSubject.next({...currentState, users});
-        })
+    })
+    return this.http.get(`${this.baseUrl}/users`, { headers }).pipe(
+      tap((users) => {
+        const currentState = this.authSubject.value;
+        this.authSubject.next({ ...currentState, users });
+      })
     );
   }
 }

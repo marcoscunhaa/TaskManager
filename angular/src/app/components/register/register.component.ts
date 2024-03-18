@@ -1,7 +1,7 @@
-import { CommonModule, Location } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
+import { CommonModule, Location } from '@angular/common';
 import { LoginComponent } from '../login/login.component';
 import { LoadingComponent } from '../loading/loading.component';
 import { HomeComponent } from '../home/home.component';
@@ -11,19 +11,18 @@ import { HomeComponent } from '../home/home.component';
   standalone: true,
   imports: [FormsModule, CommonModule, ReactiveFormsModule, LoginComponent, LoadingComponent, HomeComponent],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.scss'
+  styleUrl: './register.component.css'
 })
 export class RegisterComponent {
-
   //Alerta de erro no register
-  isAlertRegister: boolean = false;
+  isAlertErrorEmail: boolean = false;
 
-  isShowOrHideAlert() {
-    this.isAlertRegister = false;
+  isShowOrHideAlertErrorEmail() {
+    this.isAlertErrorEmail = false;
   }
 
   //formulário de registrar-se
-  constructor(public authService:AuthService, private formBuilder: FormBuilder, private location: Location) { }
+  constructor(public authService: AuthService, private formBuilder: FormBuilder, private location: Location) { }
 
   ngOnInit(): void {
     this.location.go('/register');
@@ -31,22 +30,34 @@ export class RegisterComponent {
       imageProfile: ['', Validators.required],
       fullName: ['', Validators.required],
       email: ['', Validators.required],
-      password: ['', Validators.required]
-    });
+      password: ['', Validators.required],
+      passwordConfirmation: ['', Validators.required]
+    }, { validator: this.passwordMatchValidator });
   }
 
   registerForm: FormGroup = new FormGroup({
     imageProfile: new FormControl('', Validators.required),
     fullName: new FormControl('', Validators.required),
     email: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required)
+    password: new FormControl('', Validators.required),
+    passwordConfirmation: new FormControl('', Validators.required)
   });
 
+  passwordMatchValidator(formGroup: FormGroup): ValidationErrors | null {
+    const password = formGroup.get('password')?.value;
+    const confirmPassword = formGroup.get('passwordConfirmation')?.value;
   
+    if (password === confirmPassword) {
+      return null; // Senhas coincidem, nenhum erro
+    } else {
+      return { passwordMismatch: true }; // Senhas não coincidem, retornar erro
+    }
+  }
+
   //imagem de perfio - prévia
   profilePicUrl: string | undefined;
   profilePicFile: File | null = null;;
-  
+
   uploadProfilePic() {
     const input = document.createElement('input');
     input.type = 'file';
@@ -54,14 +65,14 @@ export class RegisterComponent {
     input.onchange = (event: any) => {
       if (event.target.files && event.target.files.length > 0) {
         const file = event.target.files[0] as File;
-  
+
         // Preenche profilePicUrl com o URL da imagem selecionada
         const readerUrl = new FileReader();
         readerUrl.onload = () => {
           this.profilePicUrl = readerUrl.result as string;
         };
         readerUrl.readAsDataURL(file);
-  
+
         // Converte profilePicFile para ArrayBuffer e, em seguida, para um array de bytes
         const readerFile = new FileReader();
         readerFile.onload = () => {
@@ -83,17 +94,17 @@ export class RegisterComponent {
     this.profilePicUrl = '';
   }
 
-  hideIcon(){
+  hideIcon() {
     this.showIconOrImage = false;
   }
-  
+
   //Função de adicionar o novo register
-  user:any=null
+  user: any = null
 
   onSubmit() {
     if (this.registerForm.valid) {
       this.authService.register(this.registerForm.value).subscribe({
-        next:(response)=>{
+        next: (response) => {
           localStorage.setItem("jwt", response.jwt);
           this.authService.getUserProfile().subscribe();
           this.authService.authSubject.subscribe(
@@ -104,12 +115,10 @@ export class RegisterComponent {
         },
         error: (error) => {
           if (error.status === 409) {
-            this.isAlertRegister = true;
+            this.isAlertErrorEmail = true;
           }
         }
       })
     }
   }
-
-  
 }

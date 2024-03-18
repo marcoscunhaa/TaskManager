@@ -11,10 +11,9 @@ import { HomeComponent } from '../home/home.component';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, RegisterComponent, LoadingComponent, HomeComponent],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrl: './login.component.css'
 })
 export class LoginComponent {
-
   //Alerta de erro no login
   isAlertLogin: boolean = false;
 
@@ -59,5 +58,4 @@ export class LoginComponent {
         );
     };
   }
-
 }

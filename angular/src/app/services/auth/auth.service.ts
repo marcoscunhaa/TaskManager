@@ -8,38 +8,36 @@ import { tap } from 'rxjs/internal/operators/tap';
   providedIn: 'root'
 })
 export class AuthService {
-
   private baseUrl = 'http://localhost:8080'
 
-  constructor(private http:HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   authSubject = new BehaviorSubject<any>({
-    user:null,
+    user: null,
   })
 
-  register(userData:any):Observable<any>{
+  register(userData: any): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/auth/signup`, userData);
   }
 
-  getUserProfile():Observable<any>{
-    const headers= new HttpHeaders({
+  getUserProfile(): Observable<any> {
+    const headers = new HttpHeaders({
       Authorization: `Bearer ${localStorage.getItem("jwt")}`
-     })
-    return this.http.get<any>(`${this.baseUrl}/users/profile`, {headers}).pipe(
-      tap((user)=>{
-        const currentState=this.authSubject.value;
-        this.authSubject.next({...currentState, user})
+    })
+    return this.http.get<any>(`${this.baseUrl}/users/profile`, { headers }).pipe(
+      tap((user) => {
+        const currentState = this.authSubject.value;
+        this.authSubject.next({ ...currentState, user })
       })
     );
   }
 
-  login(userData:any):Observable<any>{
+  login(userData: any): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/auth/signin`, userData);
   }
 
-  logout(){
+  logout() {
     localStorage.clear();
     this.authSubject.next({});
   }
-
 }

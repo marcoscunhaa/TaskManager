@@ -10,40 +10,42 @@ import { tap } from 'rxjs/internal/operators/tap';
 export class TaskService {
   private baseUrl = 'http://localhost:8080'
 
-  constructor(private http:HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   taskSubject = new BehaviorSubject<any>({
-    tasks:[],
+    tasks: [],
     loading: false,
     newTask: null
   })
 
-  private getHeaders():HttpHeaders{
-    const token=localStorage.getItem("jwt")
+  private getHeaders(): HttpHeaders {
+    const token = localStorage.getItem("jwt")
     return new HttpHeaders({
       Authorization: `Bearer ${localStorage.getItem("jwt")}`
     })
   }
 
-  getTasks():Observable<any>{
-    const headers=this.getHeaders();
-    return this.http.get(`${this.baseUrl}/tasks`, {headers}).pipe(
-        tap((tasks)=>{
-          const currentState=this.taskSubject.value;
-          this.taskSubject.next({...currentState, tasks});
-        })
+  getTasks(): Observable<any> {
+    const headers = this.getHeaders();
+    return this.http.get(`${this.baseUrl}/tasks`, { headers }).pipe(
+      tap((tasks) => {
+        const currentState = this.taskSubject.value;
+        this.taskSubject.next({ ...currentState, tasks });
+      })
     );
   }
 
-  createTasks(task:any, userId:any):Observable<any>{
-    const headers=this.getHeaders();
-    return this.http.post(`${this.baseUrl}/tasks/${userId}`, task, {headers}).pipe(
-        tap((newTask)=>{
-          const currentState=this.taskSubject.value;
-          this.taskSubject.next({...currentState, 
-            tasks: 
-          [newTask,...currentState.tasks]});
-        })
+  createTasks(task: any, userId: any): Observable<any> {
+    const headers = this.getHeaders();
+    return this.http.post(`${this.baseUrl}/tasks/${userId}`, task, { headers }).pipe(
+      tap((newTask) => {
+        const currentState = this.taskSubject.value;
+        this.taskSubject.next({
+          ...currentState,
+          tasks:
+            [newTask, ...currentState.tasks]
+        });
+      })
     );
   }
 
@@ -51,7 +53,7 @@ export class TaskService {
     const headers = this.getHeaders();
     return this.http.put(`${this.baseUrl}/tasks/${task.id}/${userId}`, task, { headers }).pipe(
       tap((updatedTask: any) => {
-        const updatedTasks = this.taskSubject.value.tasks.map((item: any) => 
+        const updatedTasks = this.taskSubject.value.tasks.map((item: any) =>
           item.id === updatedTask.id ? updatedTask : item
         );
         this.taskSubject.next({ ...this.taskSubject.value, tasks: updatedTasks });
@@ -67,7 +69,7 @@ export class TaskService {
         tap((deletedTasks: any) => {
           const currentState = this.taskSubject.value;
           const updatedTasks = currentState.tasks.filter((item: any) => item.id !== id);
-          this.taskSubject.next({...currentState, tasks: updatedTasks });
+          this.taskSubject.next({ ...currentState, tasks: updatedTasks });
         })
       );
   }
@@ -81,5 +83,4 @@ export class TaskService {
       })
     );
   }
-  
 }

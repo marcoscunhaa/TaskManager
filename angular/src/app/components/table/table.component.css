@@ -1,0 +1,24 @@
+.card-title {
+    margin-left: 16%;
+    color: #fc5555;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+    font-weight: 700;
+}
+
+.modal-title {
+    margin-left: 28%;
+}
+
+.modal-content {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+img {
+    height: 200px;
+    width: auto;
+}
+
+.icon-hover {
+    font-size: 1.5rem;
+    transition: font-size 0.2s ease;
+}

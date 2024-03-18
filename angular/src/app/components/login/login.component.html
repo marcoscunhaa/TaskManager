@@ -1,15 +1,13 @@
-<!--login.component.html-->
 <section class="ftco-section mt-5">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-6 text-center mb-4">
+            <div class="col-md-6 text-center mb-2">
                 <h2 class="heading-section">Task Manager</h2>
             </div>
         </div>
         <div class="row justify-content-center">
             <div class="col-md-6 col-lg-4">
-
-                <!--Mensagem de alerta do login-->
+                <!-- Mensagem de alerta do login -->
                 <div *ngIf="isAlertLogin" class="alert alert-danger text-center" role="alert">
                     <div class="d-flex justify-content-between align-items-center">
                         <span class="text-center">Email or password invalid!</span>
@@ -19,21 +17,21 @@
                 </div>
 
                 <div class="login-wrap p-0">
-                    <h5 class="mb-3 text-center">Do you already have a account?</h5>
+                    <h5 class="mb-4 text-center">Do you already have an account?</h5>
                     <form class="signin-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                         <div class="form-group">
-                            <input type="text" class="form-control" formControlName="email" placeholder=" Email"
+                            <input type="text" class="form-control" formControlName="email" placeholder="Email"
                                 required>
                         </div>
                         <div class="form-group mt-3">
                             <input type="password" class="form-control" formControlName="password"
-                                placeholder=" Password" required>
+                                placeholder="Password" required>
                             <span toggle="#password-field" class="fa fa-fw field-icon toggle-password"></span>
                         </div>
                         <div class="form-group mt-4">
                             <button #submit type="submit" [disabled]="!loginForm.valid"
                                 class="form-control btn btn-outline-light">
-                                Sing In
+                                Sign In
                             </button>
                             @defer(on interaction(submit); prefetch on idle){
                                 @if(user){
@@ -44,12 +42,12 @@
                             }
                         </div>
                         <div class="form-group d-md-flex d-md-flex justify-content-end">
-                            <div class="w-50 text-md-right mt-4 ">
+                            <div class="w-100 text-end mt-4 mb-2">
                                 <a #register style="color: #fff;">Create an account?</a>
                                 @defer(on interaction(register)){
-                                <app-register />
+                                    <app-register />
                                 }@loading {
-                                <app-loading />
+                                    <app-loading />
                                 }
                             </div>
                         </div>
