@@ -82,7 +82,7 @@ export class NavbarComponent {
 
     this.taskService.createTasks(this.task, userId).pipe(
       tap(() => {
-        this.createdTask.emit();
+          this.createdTask.emit();
       })
     ).subscribe();
   }
