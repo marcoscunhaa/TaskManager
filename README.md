@@ -45,5 +45,6 @@ The API documentation can be found in the Postman request collection, available 
 
 ## View
 
+[![SVCKf.gif](https://s12.gifyu.com/images/SVCKf.gif "login")](https://gifyu.com/image/SVCKf)
 
-![](https://gifyu.com/image/SVCKf "login")
+
