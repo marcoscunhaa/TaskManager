@@ -54,7 +54,7 @@
                             </div>
                         </div>
                         <div class="form-group mt-3">
-                            <button #submit (click)="hideImage()" [disabled]="!registerForm.valid" type="submit"
+                            <button #submit (click)="hideImage()" (click)="hideIcon()" [disabled]="!registerForm.valid" type="submit"
                                 class="form-control btn btn-outline-light submit px-3">Sign Up</button>
                         </div>
                         @defer(on interaction(submit); prefetch on idle){
