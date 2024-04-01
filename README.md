@@ -2,7 +2,7 @@
 
 This is a web application developed using Spring Boot (v3.2.3) and Angular (v17.2.1). It allows managing tasks through a user-friendly interface and has a RESTful API for interaction with the backend.
 
-## :pushpin: Features
+## :four_leaf_clover: Features
 
 * Task management: Creation, editing, deletion, searching, and viewing of tasks.
 * RESTful API: Provides endpoints for seamless interaction with the backend.
@@ -18,15 +18,14 @@ This is a web application developed using Spring Boot (v3.2.3) and Angular (v17.
 * JDK v17.0.10
 * Maven v3.9.6
 * Docker v4.27.2
-* Node.js v21.6.2
+* Node.js v20.12.0
 
-## :gear: Configuration and Execution
+## :play_or_pause_button: Configuration and Execution
 
 1. **Backend**:
    
    * Navigate to the `spring-boot` folder.
    * Run `mvn clean install` to download dependencies and build the project.
-   * Run `docker-compose up -d` to start the MySQL container.
    * Import the project into your favorite IDE.
    * Start the Spring Boot application.
 
