@@ -1,4 +1,4 @@
-# :computer: TaskManager
+# :bookmark_tabs: TaskManager
 
 This is a web application developed using Spring Boot (v3.2.3) and Angular (v17.2.1). It allows managing tasks through a user-friendly interface and has a RESTful API for interaction with the backend.
 
@@ -43,8 +43,6 @@ The API documentation can be found in the Postman request collection, available 
 
 
 
-## View
+## Application running
 
 [![SVCKf.gif](https://s12.gifyu.com/images/SVCKf.gif "login")](https://gifyu.com/image/SVCKf)
-
-
