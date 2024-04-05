@@ -1,12 +1,7 @@
 .card-title {
-    margin-left: 16%;
     color: #fc5555;
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
     font-weight: 700;
-}
-
-.modal-title {
-    margin-left: 28%;
 }
 
 .modal-content {
@@ -14,11 +9,22 @@
 }
 
 img {
-    height: 200px;
+    height: 36px;
+    margin-right: 8px;
     width: auto;
 }
 
 .icon-hover {
     font-size: 1.5rem;
     transition: font-size 0.2s ease;
+}
+
+.button-float {
+    position: absolute;
+    font-size: 1.5rem;
+    transition: font-size 0.2s ease;
+    bottom: 12px;
+    right: 36px;
+    border-radius: 50%;
+    z-index: 1000;
 }

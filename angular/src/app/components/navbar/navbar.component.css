@@ -1,19 +1,9 @@
 img {
-    height: 55px;
-    width: 55px;
-    float: left;
-    margin-left: 14px;
-    margin-right: 12px;
+    height: 50px;
+    width: 50px;
     border-radius: 50%;
   }
-  
-  .nav-welcome {
-    display: flex;
-    align-items: center;
-    color: black;
-    text-decoration: none;
-  }
-  
+
   .nav-link {
     color: black;
     text-decoration: none;
@@ -25,16 +15,6 @@ img {
     border-bottom-color: #f76b6b;
   }
   
-  .nav-link .bi-power,
-  .nav-link .bi-plus-lg {
-    margin-right: 0.4rem;
+  .nav-link .bi-power {
+    margin-right: 4px;
   }
-  
-  .modal-title {
-    margin-left: 28%;
-  }
-  
-  .modal-content {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  }
-  

@@ -14,9 +14,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class TableComponent {
   //Alertas
-  @Input()
   isAlertCreated: boolean = false;
-  @Input()
   isAlertCreatedNull: boolean = false;
   isAlertUpdate: boolean = false;
   isAlertDelete: boolean = false;
@@ -93,9 +91,44 @@ export class TableComponent {
     );
   }
 
+
   //Mostrar e esconder modal de atualizar
   priority = ['High priority', 'Medium priority', 'Low priority'];
   status = ['To Do', 'Doing', 'Done', 'Updating'];
+
+  modalCreated: boolean = true;
+
+  onShowOrHideCreate(){
+    this.modalCreated = !this.modalCreated;
+  }
+
+  onCreated(){
+    let userId = null;
+
+    if (this.task.assignedUser === '' || this.task.title === '' || this.task.priority === '' || this.task.status === '') {
+      this.isAlertCreatedNull = !this.isAlertCreatedNull;
+    }
+
+    for (const user of this.users) {
+      if (user.fullName === this.task.assignedUser) {
+        userId = user.id;
+        break;
+      }
+    }
+
+    this.taskService.createTasks(this.task, userId).pipe(
+      tap(() => {
+          this.isAlertCreated = !this.isAlertCreated;
+      })
+    ).subscribe();
+    
+    this.task = {
+      assignedUser: '',
+      title: '',
+      priority: '',
+      status: ''
+    };
+  }
 
   modalUpdated: boolean = true;
   modalDelete: boolean = true;
@@ -126,6 +159,13 @@ export class TableComponent {
 
   onHideUpdate() {
     this.modalUpdated = !this.modalUpdated;
+
+    this.task = {
+      assignedUser: '',
+      title: '',
+      priority: '',
+      status: ''
+    };
   }
 
   //Deleta a atividade selecionada

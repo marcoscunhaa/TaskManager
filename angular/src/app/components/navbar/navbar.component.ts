@@ -27,9 +27,19 @@ export class NavbarComponent {
     }
   ];
 
-  constructor(private authService: AuthService, private taskService: TaskService, private userService: UserService) { }
+  constructor(private authService: AuthService, private userService: UserService) { }
+
+  currentDateTime: any = null;
+
+   updateDateTime() {
+     this.currentDateTime = new Date();
+   }
 
   ngOnInit() {
+    setInterval(() => {
+      this.updateDateTime();
+    }, 1000);
+    
     this.authService.getUserProfile().subscribe();
     this.authService.authSubject.subscribe(
       (auth) => {
@@ -44,61 +54,9 @@ export class NavbarComponent {
     )
   }
 
-  @Output() createdTask: EventEmitter<void> = new EventEmitter<void>();
-  @Output() createdTaskNull: EventEmitter<void> = new EventEmitter<void>();
-
-  //Vai receber os inputs para a nova tarefa
-  task: any = {
-    assignedUser: '',
-    title: '',
-    priority: '',
-    status: ''
-  };
-
-  //Atributos para o select de criar tarefa
-  priority = ['High priority', 'Medium priority', 'Low priority'];
-  status = ['To Do', 'Doing', 'Done', 'Updating'];
-
-
   //Limpa os dados de usuário logado
   onLogout() {
     this.authService.logout();
   }
 
-  //Cria uma nova tarefa
-  onSubmit() {
-    let userId = null;
-
-    if (this.task.assignedUser === '' || this.task.title === '' || this.task.priority === '' || this.task.status === '') {
-      this.createdTaskNull.emit();
-    }
-
-    for (const user of this.users) {
-      if (user.fullName === this.task.assignedUser) {
-        userId = user.id;
-        break;
-      }
-    }
-
-    this.taskService.createTasks(this.task, userId).pipe(
-      tap(() => {
-          this.createdTask.emit();
-      })
-    ).subscribe();
-  }
-
-  //Atributo que mostrar e esconde modal de cadastrar tarefa
-  modal: boolean = true;
-
-  //Mostra e esconden modal de cadastro de tarefas
-  onHideOrShow() {
-    this.modal = !this.modal;
-
-    this.task = {
-      assignedUser: '',
-      title: '',
-      priority: '',
-      status: ''
-    };
-  }
 }

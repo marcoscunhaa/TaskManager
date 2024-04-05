@@ -13,22 +13,10 @@ import { Location } from '@angular/common';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  isAlertCreated: boolean = false;
-  isAlertCreatedNull: boolean = false;
-
   //add url da página
-  constructor(private location: Location) { }
-
-  ngOnInit(): void {
+  constructor(private location: Location) {
     this.location.go('/home');
-  }
+   }
 
-  //Repassar alerta do navbar
-  onCreatedTask(event: void) {
-    this.isAlertCreated = !this.isAlertCreated;
-  }
 
-  onCreatedTaskNull(event: void) {
-    this.isAlertCreatedNull = !this.isAlertCreatedNull;
-  }
 }

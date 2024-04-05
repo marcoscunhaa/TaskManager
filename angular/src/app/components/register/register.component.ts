@@ -110,12 +110,14 @@ export class RegisterComponent {
           this.authService.authSubject.subscribe(
             (auth) => {
               this.user = auth.user;
+              this.showIconOrImage = false;
             }
           );
         },
         error: (error) => {
           if (error.status === 409) {
             this.isAlertErrorEmail = true;
+            this.showIconOrImage = true;
           }
         }
       })
