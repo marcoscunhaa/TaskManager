@@ -1,15 +1,14 @@
+<img src="/assets/bg-2.webp" alt="banner-register">
 <section class="ftco-section">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8 text-center mb-3 mt-5">
-                <h2 class="heading-section">Task Manager</h2>
+            <div class="col-md-6 text-center mt-4 mb-2">
+                <h4 class="fw-bold">Sign Up to Task Manager</h4>
             </div>
         </div>
         <div class="row justify-content-center">
             <div class="col-md-6 col-lg-4">
                 <div class="login-wrap p-0">
-                    <h4 class="mb-4 text-center">Create your new account</h4>
-
                     <!-- Mensagem de alerta do registro -->
                     <div *ngIf="isAlertErrorEmail" class="alert alert-danger text-center" role="alert">
                         <div class="d-flex justify-content-between align-items-center">
@@ -55,7 +54,7 @@
                         </div>
                         <div class="form-group mt-3">
                             <button #submit (click)="hideImage()" [disabled]="!registerForm.valid" type="submit"
-                                class="form-control btn btn-outline-light submit px-3">Sign Up</button>
+                                class="form-control btn btn-outline-light submit px-3">Create Account</button>
                         </div>
                         @defer(on interaction(submit); prefetch on idle){
                             @if(user){
@@ -66,7 +65,7 @@
                         }
                         <div class="form-group d-md-flex d-md-flex justify-content-center">
                             <div class="w-100 text-end mt-4 mb-2">
-                                <a #login (click)="hideIcon()" style="color: #fff;">Have an account?</a>
+                                <span>Already have an account? <a #login (click)="hideIcon()" class="border-bottom">Sign in</a></span>
                                 @defer(on interaction(login); prefetch on idle){
                                     <app-login />
                                 }@loading {
