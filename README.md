@@ -45,4 +45,12 @@ The API documentation can be found in the Postman request collection, available 
 
 ## Application running
 
-[![SVCKf.gif](https://s12.gifyu.com/images/SVCKf.gif "login")](https://gifyu.com/image/SVCKf)
+
+
+[![Jk4L9hN.md.png](https://iili.io/Jk4L9hN.md.png "login")](https://freeimage.host/i/Jk4L9hN)
+
+[![Jk4LP9f.md.png](https://iili.io/Jk4LP9f.md.png "register")](https://freeimage.host/i/Jk4LP9f)
+
+[![Jk4QINR.md.png](https://iili.io/Jk4QINR.md.png)](https://freeimage.host/i/Jk4QINR)
+
+
