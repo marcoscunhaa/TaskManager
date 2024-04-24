@@ -49,4 +49,6 @@ The API documentation can be found in the Postman request collection, available 
 
 [![table](https://i.ibb.co/ZWcDCSZ/table.png)](https://ibb.co/TmP351C)
 
-<a href="https://ibb.co/3kdyqTz"><img src="https://i.ibb.co/HX4DsKd/add-task.png" alt="add-task" border="0"></a>
+[![add-task](https://i.ibb.co/HX4DsKd/add-task.png)](https://ibb.co/3kdyqTz)
+
+
