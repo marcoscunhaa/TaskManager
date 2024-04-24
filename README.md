@@ -45,12 +45,8 @@ The API documentation can be found in the Postman request collection, available 
 
 ## Application running
 
+[![login](https://i.ibb.co/c6v4xMX/login.png)](https://ibb.co/m9BfS1F)
 
+[![table](https://i.ibb.co/ZWcDCSZ/table.png)](https://ibb.co/TmP351C)
 
-[![Jk4L9hN.md.png](https://iili.io/Jk4L9hN.md.png "login")](https://freeimage.host/i/Jk4L9hN)
-
-[![Jk4LP9f.md.png](https://iili.io/Jk4LP9f.md.png "register")](https://freeimage.host/i/Jk4LP9f)
-
-[![Jk4QINR.md.png](https://iili.io/Jk4QINR.md.png)](https://freeimage.host/i/Jk4QINR)
-
-
+<a href="https://ibb.co/3kdyqTz"><img src="https://i.ibb.co/HX4DsKd/add-task.png" alt="add-task" border="0"></a>

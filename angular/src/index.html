@@ -8,6 +8,14 @@
   <link rel="icon" type="image/x-icon" href="https://i.ibb.co/QQGpxmD/planning.png">
 </head>
 <body>
+  <script src="https://accounts.google.com/gsi/client?onload=init" async defer></script>
+  <script>
+    function init() {
+      gapi.load('auth2', function(){
+        gapi.auth2.init();
+      });
+    }
+  </script>  
   <app-root></app-root>
 </body>
 </html>
